@@ -1,0 +1,7 @@
+' Gambas class file
+
+Public Sub txtHilfe_KeyPress()
+
+  
+
+End

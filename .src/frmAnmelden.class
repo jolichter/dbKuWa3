@@ -1,0 +1,437 @@
+' Gambas class file
+
+Public strDBName As String                                            'DB Name
+Public myConn As Connection                                           'Datenbankverbindung
+Public strMySQLVer As String                                          'version mysql-server
+Public strSQLite3Ver As String                                        'version sqlite3
+
+Private strDBTyp As String                                            'DB Typ
+Private strHost As String                                             'DB Host
+Private strUser As String                                             'DB User
+Private strCommand As String                                          'Shell-Befehl
+
+
+
+Public Sub SQL_Version()
+    'Prüfe ob mySQL installiert ist
+     Try Shell "mysql -V" Wait To strMySQLVer
+    'mysql-server version (abgekürzt)
+     strMySQLVer = Mid$(strMySQLVer, 1, InStr(strMySQLVer, ",") - 1)
+
+    'Prüfe ob sqlite3 installiert ist
+     Try Shell "sqlite3 -version" Wait To strSQLite3Ver
+     If strSQLite3Ver <> "" Then strSQLite3Ver = "sqlite3 Ver " & strSQLite3Ver
+End
+
+
+Public Sub Form_Open()
+
+   SQL_Version()
+
+  'Combobox laden
+   cbxDBTyp.add("mysql")
+   'cbxDBTyp.add("postgresql")
+   'cbxDBTyp.add("sqlite3") ' deaktiviert da SQLite selbst Datentypen nicht berücksichtigt ;-(
+                            ' zu viele Kompatibilitätsprobleme mit den Datentypen
+                            ' wie Decimal, Float usw. werden unter SQLite nicht korrekt abspeichert
+
+  conf_Anmeldedaten_laden()
+  cbxDBTyp_Click()
+  txtPasswort.Clear
+  txtPasswort.SetFocus
+
+
+End
+
+Public Sub cbxDBTyp_Click()
+  Select Case cbxDBTyp.Text
+  Case "mysql"
+
+    lblSQL_Version.Text = strMySQLVer
+
+    cbxDatenbank_repair.Enabled = True
+
+    lblHostInfo.Text = "das ist oft 'localhost'"
+    lblDatenbankInfo.Text = "gewünschter Datenbank Name"
+    lblDBUserInfo.Text = "das ist oft 'root'"
+    lblPasswortInfo.Text = "mysql Passwort"
+
+    txtUser.Enabled = True
+    txtPasswort.Enabled = True
+
+    txtInfo.Text = "MySQL ist eine echte Multi-User und Multi-Treaded SQL DB." & Chr(10) & Chr(10) &
+    "Die wichtigsten Eigenschaften von MySQL sind Geschwindigkeit, Stabilität und Sicherheit mit der sich extrem große Datenmengen bewältigen lassen." & Chr(10) & Chr(10) &
+    "Das Programm prüft beim starten ob der MySQL-Server installiert ist. Wenn nicht muss dieser noch installiert werden." & Chr(10) & Chr(10) &
+    "Einfach per Terminal (Konsole) installieren, Befehl:" & Chr(10) &
+    "sudo apt-get install mysql-server emma" & Chr(10) & Chr(10) & Chr(10) & Chr(10) &
+    "-------------------------------" & Chr(10) &
+    "Tipp: Beim ersten Start empfehle ich eine 'test' Datenbank zu erstellen um das Programm zu testen."
+
+
+
+    If txtHost.Text = User.Home & "/" Then txtHost.Text = "localhost"
+
+  Case "sqlite3"
+
+    lblSQL_Version.Text = strSQLite3Ver
+
+    cbxDatenbank_repair.Enabled = False
+
+    lblHostInfo.Text = "Pfad (ohne Dateiname) z.B. '/home/user/'"
+    lblDatenbankInfo.Text = "gewünschter Datenbank Dateiname"
+    lblDBUserInfo.Text = ""
+    lblPasswortInfo.Text = ""
+
+    txtUser.Enabled = False
+    txtPasswort.Enabled = False
+
+    txtInfo.Text = "SQLite3 ist eine dateibasierte DB und eignet sich für ein paar Tausend Einträge." & Chr(10) & Chr(10) &
+    "Geht es darum sehr große Datenmengen zu verwalten (mehrere Tausend oder Huntertausend Einträge), so ist SQLite dazu zwar grundsätzlich in der Lage, allerdings dann nicht mehr sonderlich performant." & Chr(10) &
+    "Für diese Anwendungsfälle eignet sich dann die 'große' Datenbank MySQL besser."
+
+    If txtHost.Text = "localhost" Then txtHost.Text = User.Home & "/"
+
+ End Select
+End
+
+
+Public Sub conf_Anmeldedaten_laden()
+'Daten für die Anmeldemaske einlesen
+
+  strDBTyp = Settings["DB/Typ", "mysql"]
+  cbxDBTyp.Text = strDBTyp
+  strHost = Settings["DB/Host", "localhost"]
+  txtHost.Text = strHost
+  strDBName = Settings["DB/Datenbank", "dbKuWa3"]
+  txtDatenbank.Text = strDBName
+  strUser = Settings["DB/User", "root"]
+  txtUser.Text = strUser
+
+End
+
+
+
+' Beenden und DB Einstellungen speichern
+Public Sub btnDBbeenden_Click()
+ Form_Close()
+End
+
+Public Sub Form_Close()
+  conf_Anmeldedaten_speichern
+End
+
+Public Sub Form_KeyPress()
+  Select Case Key.Code
+     Case Key.Escape
+     Form_Close()
+  End Select
+End
+
+Public Sub conf_Anmeldedaten_speichern()
+'Daten der Anmeldemaske speichern
+  Settings["DB/Typ"] = cbxDBTyp.Text
+  Settings["DB/Host"] = txtHost.Text
+  Settings["DB/Datenbank"] = txtDatenbank.Text
+  Settings["DB/User"] = txtUser.Text
+  Settings.Save
+
+  Try myConn.Close
+  Me.close 'Programm beenden
+End
+
+
+
+' SetFocus bei ENTER oder RETURN
+Public Sub cbxDBTyp_KeyRelease()
+If Key.Code = Key.Enter Or Key.Code = Key.return Then
+  txtHost.SetFocus
+Endif
+End
+Public Sub txtHost_KeyRelease()
+If Key.Code = Key.Enter Or Key.Code = Key.return Then
+  txtDatenbank.SetFocus
+Endif
+End
+Public Sub txtDatenbank_KeyRelease()
+If Key.Code = Key.Enter Or Key.Code = Key.return Then
+  txtUser.SetFocus
+Endif
+End
+Public Sub txtUser_KeyRelease()
+If Key.Code = Key.Enter Or Key.Code = Key.return Then
+  txtPasswort.SetFocus
+Endif
+End
+Public Sub txtPasswort_KeyRelease()
+If Key.Code = Key.Enter Or Key.Code = Key.return Then
+  btnVerbinden_Click
+  Endif
+End
+
+
+
+
+
+Public Sub btnVerbinden_Click()
+ Dim strMySQLadd As String  ' SQL Befehlserweiterung für MySQL
+
+
+ 'Prüfe ob mysql-server installiert ist
+  If lblSQL_Version.text = "" And cbxDBTyp.Text = "mysql" Then
+  modDBTools.mysql_install()
+  SQL_Version() '  version neu einlesen
+  lblSQL_Version.Text = strMySQLVer
+  Endif
+
+ 'Prüfe ob sqlite3 installiert ist
+  If lblSQL_Version.text = "" And cbxDBTyp.Text = "sqlite3" Then
+  modDBTools.sqlite3_install()
+  SQL_Version() '  version neu einlesen
+  lblSQL_Version.Text = strSQLite3Ver
+  Endif
+
+
+
+ 'Mit Datenbank verbinden und evt. Datenbank und Tabellen anlegen
+     If cbxDBTyp.Text = "mysql" Then
+     strMySQLadd = " ENGINE = MyISAM DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci"
+        If txtDatenbank.Text = "" Or txtHost.Text = "" Or txtPasswort.Text = "" Or txtUser.Text = "" Then
+        Message.Warning("Bitte erst alle Daten eingeben!")
+        Return
+        Endif
+     Endif
+
+     If cbxDBTyp.Text = "sqlite3" Then
+     strMySQLadd = ""
+        If txtDatenbank.Text = "" Or txtHost.Text = "" Then
+        Message.Warning("Bitte erst alle Daten eingeben!")
+        Return
+        Else
+        Try Mkdir txtHost.Text ' wenn nötig erstelle ein Verzeichnis
+        Endif
+     Endif
+
+
+
+  Application.Busy = 1
+
+  Try myConn.Close
+  myConn = New Connection
+
+
+  strDBName = txtDatenbank.Text ' Datenbankname
+
+
+
+  With myConn
+    .Type = cbxDBTyp.Text
+    .Host = txtHost.Text
+    .Login = txtUser.Text
+    .Password = txtPasswort.Text
+    .Name = ""
+  End With
+
+  If cbxDatenbank_erstellen.Value = True Then
+     myConn.Open
+         If Not myConn.Databases.Exist(strDBName) Then
+         myConn.Databases.Add(strDBName) ' eine neue Datenbank wird erstellt
+         Endif
+     myConn.Close ' da sonst keine Tabellen angelegt werden können
+  Endif 'DB erstellen
+
+
+  myConn.Name = strDBName
+  myConn.Open
+
+
+'Tabelle "Firmen" anlegen, falls nicht vorhanden
+If Not myConn.Tables.Exist("tblFirmen") Then
+  myConn.EXEC("CREATE TABLE tblFirmen (id_firma BIGINT NOT NULL," &
+  "name_firma VARCHAR(64) NOT NULL," &
+  "logo_firma VARCHAR(250)," &
+  "adresse_firma VARCHAR(128)," &
+  "kontakt_firma VARCHAR(256)," &
+  "zahlungsziel_firma INT," &
+  "skonto_firma INT," &
+  "skonto_tage_firma INT," &
+  "kleinunternehmen_firma TINYINT(1)," &
+  "ust_idnr_firma VARCHAR(150)," &
+  "bankverbindung_firma VARCHAR(200)," &
+  "bemerkung_firma VARCHAR(500)," &
+  "PRIMARY KEY(id_firma), UNIQUE (id_firma, name_firma))" & strMySQLadd)
+Endif
+
+'Tabelle "Kunden" anlegen, falls nicht vorhanden
+If Not myConn.Tables.Exist("tblKunden") Then
+  myConn.EXEC("CREATE TABLE tblKunden (id_kunde BIGINT NOT NULL," &
+  "id_firma_kunde BIGINT NOT NULL," &
+  "adressentyp_kunde VARCHAR(32)," &
+  "anrede_kunde VARCHAR(16)," &
+  "name_kunde VARCHAR(64) NOT NULL," &
+  "vorname_kunde VARCHAR(64)," &
+  "abteilung_kunde VARCHAR(64)," &
+  "strasse_kunde VARCHAR(64)," &
+  "plz_kunde VARCHAR(16)," &
+  "ort_kunde VARCHAR(64)," &
+  "telefon_kunde VARCHAR(32)," &
+  "fax_kunde VARCHAR(32)," &
+  "email_kunde VARCHAR(64)," &
+  "email_kunde_senden TINYINT(1)," &
+  "aktiv_kunde TINYINT(1)," &
+  "ihrzeichen_kunde VARCHAR(32)," &
+  "bank_kunde VARCHAR(200)," &
+  "bemerkung_kunde VARCHAR(500)," &
+  "PRIMARY KEY(id_kunde), UNIQUE (id_kunde))" & strMySQLadd)
+Endif
+
+'Tabelle "Lieferanten" anlegen, falls nicht vorhanden
+If Not myConn.Tables.Exist("tblLieferanten") Then
+  myConn.EXEC("CREATE TABLE tblLieferanten (id_lieferanten BIGINT NOT NULL," &
+  "name_lieferanten VARCHAR(64) NOT NULL," &
+  "zusatz_lieferanten VARCHAR(64)," &
+  "internet_lieferanten VARCHAR(64)," &
+  "bemerkung_lieferanten VARCHAR(500)," &
+  "PRIMARY KEY(id_lieferanten), UNIQUE (id_lieferanten, name_lieferanten))" & strMySQLadd)
+Endif
+
+'Tabelle "Waren" anlegen, falls nicht vorhanden
+If Not myConn.Tables.Exist("tblWaren") Then
+  myConn.EXEC("CREATE TABLE tblWaren (id_waren BIGINT NOT NULL," &
+  "lieferant_waren VARCHAR(64) NOT NULL," &
+  "bereich_waren VARCHAR(64) NOT NULL," &
+  "kategorie_waren VARCHAR(64) NOT NULL," &
+  "beschreibung_waren VARCHAR(64) NOT NULL," &
+  "spezifikation_waren VARCHAR(128)," &
+  "nichtlager_waren TINYINT(1)," &
+  "mwst_waren_code INT," &
+  "preis_ek_netto_waren DEC(10,2)," &
+  "preis_vk_netto_waren DEC(10,2)," &
+  "preis_ek_brutto_waren DEC(10,2)," &
+  "preis_vk_brutto_waren DEC(10,2)," &
+  "bestand_waren DEC(10,2)," &
+  "mindestbestand_waren DEC(10,2)," &
+  "einheit_waren VARCHAR(12)," &
+  "bemerkung_waren VARCHAR(500)," &
+  "PRIMARY KEY(id_waren), UNIQUE(id_waren))" & strMySQLadd)
+Endif
+
+'Tabelle "Ansprechpartner Lieferanten" anlegen, falls nicht vorhanden
+If Not myConn.Tables.Exist("tblAP_Lieferanten") Then
+  myConn.EXEC("CREATE TABLE tblAP_Lieferanten (id_ap_lieferanten BIGINT NOT NULL," &
+  "firma_ap_lieferanten VARCHAR(64) NOT NULL," &
+  "anrede_ap_lieferanten VARCHAR(64)," &
+  "name_ap_lieferanten VARCHAR(64) NOT NULL," &
+  "vorname_ap_lieferanten VARCHAR(64)," &
+  "abteilung_ap_lieferanten VARCHAR(64)," &
+  "strasse_ap_lieferanten VARCHAR(64)," &
+  "plz_ap_lieferanten VARCHAR(16)," &
+  "ort_ap_lieferanten VARCHAR(64)," &
+  "telefon_ap_lieferanten VARCHAR(32)," &
+  "fax_ap_lieferanten VARCHAR(32)," &
+  "email_ap_lieferanten VARCHAR(64)," &
+  "bemerkung_ap_lieferanten VARCHAR(500)," &
+  "PRIMARY KEY(id_ap_lieferanten), UNIQUE(id_ap_lieferanten))" & strMySQLadd)
+Endif
+
+'Tabelle "Firmen Rechnungen" anlegen, falls nicht vorhanden
+If Not myConn.Tables.Exist("tblFirma_Rechnung") Then
+  myConn.EXEC("CREATE TABLE tblFirma_Rechnung (id_rechnung BIGINT NOT NULL," &
+  "id_kunde_rechnung BIGINT NOT NULL," &
+  "id_firma_rechnung BIGINT NOT NULL," &
+  "projekt_rechnung VARCHAR(64) NOT NULL," &
+  "laufzeit_rechnung INT," &
+  "bestelldatum_rechnung DATE," &
+  "rechnungsdatum_rechnung DATE," &
+  "lieferdatum_rechnung DATE," &
+  "auftraggeber_rechnung VARCHAR(64)," &
+  "abholer_rechnung VARCHAR(64)," &
+  "zahlungsart_rechnung VARCHAR(64)," &
+  "lieferart_rechnung VARCHAR(64)," &
+  "zahlungsfrist_skonto_rechnung DATE," &
+  "zahlungsfrist_rechnung DATE," &
+  "zahlungseingang_rechnung DATE," &
+  "rabatt_rechnung INT," &
+  "zahlungsziel_rechnung INT," &
+  "skonto_rechnung INT," &
+  "skonto_tage_rechnung INT," &
+  "status_rechnung INT," &
+  "netto_erm_rechnung DEC(10,2)," &
+  "mwst_erm_rechnung DEC(10,2)," &
+  "mwst_erm_rechnung_proz DEC(10,2)," &
+  "brutto_erm_skonto_rechnung DEC(10,2)," &
+  "netto_voll_rechnung DEC(10,2)," &
+  "mwst_voll_rechnung DEC(10,2)," &
+  "mwst_voll_rechnung_proz DEC(10,2)," &
+  "brutto_voll_rechnung DEC(10,2)," &
+  "netto_gesamt_rechnung DEC(10,2)," &
+  "mwst_gesamt_rechnung DEC(10,2)," &
+  "brutto_gesamt_rechnung DEC(10,2)," &
+  "bemerkung_rechnung VARCHAR(500)," &
+  "bemerkungInt_rechnung VARCHAR(500)," &
+  "PRIMARY KEY(id_rechnung, projekt_rechnung), UNIQUE(id_rechnung))" & strMySQLadd)
+Endif
+
+'Tabelle "Positionen Rechnungen" anlegen, falls nicht vorhanden
+If Not myConn.Tables.Exist("tblPosition_Rechnung") Then
+ myConn.EXEC("CREATE TABLE tblPosition_Rechnung (id_position_rechnung BIGINT NOT NULL," &
+  "nummer_id_rechnung BIGINT NOT NULL," &
+  "waren_nr_rechnung BIGINT NOT NULL," &
+  "kategorie_position_rechnung VARCHAR(64) NOT NULL," &
+  "beschreibung_position_rechnung VARCHAR(64) NOT NULL," &
+  "menge_position_rechnung DEC(10,2)," &
+  "mwst_position_rechnung DEC(10,2)," &
+  "mwst_code_position_rechnung INT," &
+  "netto_position_rechnung DEC(10,2)," &
+  "netto_ges_position_rechnung DEC(10,2)," &
+  "PRIMARY KEY(id_position_rechnung, nummer_id_rechnung), UNIQUE(id_position_rechnung))" & strMySQLadd)
+Endif
+
+
+'Tabelle "Text Rechnung" anlegen, falls nicht vorhanden
+If Not myConn.Tables.Exist("tblText_Rechnung") Then
+ myConn.EXEC("CREATE TABLE tblText_Rechnung (id_position_text BIGINT NOT NULL," &
+  "txt_anrede_herr VARCHAR(128)," &
+  "txt_anrede_frau VARCHAR(128)," &
+  "txt_anrede_familie VARCHAR(128)," &
+  "txt_anrede_herrdr VARCHAR(128)," &
+  "txt_anrede_fraudr VARCHAR(128)," &
+  "txt_anrede_firma VARCHAR(128)," &
+  "txt_anrede_stadt VARCHAR(128)," &
+  "txt_anrede_gemeinde VARCHAR(128)," &
+  "txt_anrede_verein VARCHAR(128)," &
+  "txt_status_rechnung VARCHAR(128)," &
+  "txt_status_angebot VARCHAR(128)," &
+  "txt_einleitung1 VARCHAR(500)," &
+  "txt_einleitung2 VARCHAR(500)," &
+  "txt_mahnung VARCHAR(500)," &
+  "txt_bemerkung VARCHAR(500)," &
+  "PRIMARY KEY(id_position_text), UNIQUE(id_position_text))" & strMySQLadd)
+
+  'standard Texte anlegen
+  myConn.Exec("INSERT INTO tblText_Rechnung (id_position_text, txt_anrede_herr, txt_anrede_frau, txt_anrede_familie, txt_anrede_herrdr, txt_anrede_fraudr, txt_anrede_firma, txt_anrede_stadt, txt_anrede_gemeinde, txt_anrede_verein, txt_status_rechnung, txt_status_angebot, txt_einleitung1, txt_einleitung2, txt_mahnung, txt_bemerkung) " &
+              "Values(1,'Sehr geehrter Herr','Sehr geehrte Frau','Sehr geehrte Familie','Sehr geehrter Herr Dr.','Sehr geehrte Frau Dr.','Sehr geehrte Damen und Herren,','Sehr geehrte Damen und Herren,','Sehr geehrte Damen und Herren,','Sehr geehrte Damen und Herren,','(Bitte bei Zahlungen/Anfragen immer angeben)','(Bitte bei Anfragen immer angeben)','wir bedanken uns für Ihren Auftrag und stellen hiermit in Rechnung:','hiermit unterbreiten wir Ihnen folgendes Angebot:','Zahlungserinnerungen sind ärgerlich und lästig für beide Seiten. Verstehen Sie unser Schreiben als netten\nHinweis. Leider haben Sie oben genannte Rechnung bislang noch nicht bezahlt. Sollte sich jedoch Ihre\nZahlung mit unserem Schreiben gekreuzt haben, dann sehen Sie dieses bitte als gegenstandslos an.','Mit freundlichen Grüßen,\n')")
+
+Endif
+
+
+
+'_________________________________________________________________
+
+
+If myConn.Opened = True Then
+
+   'DB reparieren?
+   If cbxDatenbank_repair.Value = True Then modDBTools.DB_repair(txtDatenbank.Text, txtUser.Text, txtPasswort.Text)
+
+   frmVerw.Show()
+Endif
+
+Finally
+   Application.Busy = 0
+   cbxDatenbank_erstellen.Value = False ' Checkbox aus
+
+Catch
+   Message.Error(DConv(Error.Text))
+End
+
+

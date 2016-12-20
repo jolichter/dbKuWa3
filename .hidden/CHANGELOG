@@ -1,0 +1,94 @@
+* Tue Dec 20 2016 Jo Lichter <jlichter@web.de> 16.12.39
+- update: erkennt KMail oder Evolution als Mailclient
+
+* Sun Dec 18 2016 Jo Lichter <jlichter@web.de> 16.12.38
+- update: Datum (ISO)
+
+* Sun Dec 18 2016 Jo Lichter <jlichter@web.de> 16.12.36-37
+- change: als eMail Programm wird wieder Evolution benutzt
+
+* Thu Jan 07 2016 Jo Lichter <jlichter@web.de> 16.1.35
+- change: als eMail Programm wird nun KMail benutzt
+
+* Wed Nov 05 2014 Jo Lichter <jlichter@web.de> 14.11.34
+- update: Lieferart Dienstleitung hinzugefügt
+
+* Tue May 06 2014 Jo Lichter <jlichter@web.de> 14.5.33
+- update3: Transliteration erweitert
+
+* Tue May 06 2014 Jo Lichter <jlichter@web.de> 14.5.32
+- update2: Transliteration erweitert
+
+* Tue May 06 2014 Jo Lichter <jlichter@web.de> 14.5.32
+- update: Transliteration erweitert
+
+* Mon May 05 2014 Jo Lichter <jlichter@web.de> 14.5.31
+- update: Transliteration PDF-Dateiname
+
+* Sun May 04 2014 Jo Lichter <jlichter@web.de> 14.5.30
+- update: Anrede "Verein" hinzugefügt
+
+* Mon Jan 06 2014 Jo Lichter <jlichter@web.de> 14.1.29
+- update: Druckeranpassung an Version 26-29
+
+* Sat Mar 30 2013 Jo Lichter <jlichter@web.de> 13.3.25
+- update: Anrede angepasst wenn ohne Vorname
+
+* Sat Mar 30 2013 Jo Lichter <jlichter@web.de> 13.3.24
+- update: Faltmarken optimiert (float anstatt integer)
+
+* Sat Mar 16 2013 Jo Lichter <jlichter@web.de> 13.2.23
+- update: Anrede angepasst
+
+* Thu Feb 21 2013 Jo Lichter <jlichter@web.de> 13.2.22
+- bug: Gambas 3.4.0 Print-Fix
+
+* Fri Oct 26 2012 Jo Lichter <jlichter@web.de> 12.10.21
+- bug: Datum LfZ-Rechnungen beim kopieren angepasst
+
+* Fri Oct 26 2012 Jo Lichter <jlichter@web.de> 12.8.20
+- bug: Rechnung und LfZ-Rechnungen kopieren, funktioniert nun auch unter Gambas3
+
+* Sat Sep 08 2012 Jo Lichter <jlichter@web.de> 12.8.19
+- update: Druckrand angepasst
+
+* Tue Aug 28 2012 Jo Lichter <jlichter@web.de> 12.8.18
+- update: small things
+
+* Tue Aug 28 2012 Jo Lichter <jlichter@web.de> 12.8.17
+- bug: unsinnige Texte in der conf-Datei entfernt
+
+* Mon Aug 27 2012 Jo Lichter <jlichter@web.de> 12.8.16
+- new: dbKuWa3.conf Datei erweitert -> extra Merker für jede Firma!
+
+* Mon Aug 27 2012 Jo Lichter <jlichter@web.de> 12.8.15
+- bug: Rechnungen einlesen (cancel)
+
+* Mon Aug 27 2012 Jo Lichter <jlichter@web.de> 12.8.14
+-bug: SQL Fehler BemerkungIDRechnung behoben
+
+* Mon Aug 27 2012 Jo Lichter <jlichter@web.de> 12.8.13
+- new: Interne Bemerkungen in der Rechnung möglich
+
+* Sun Aug 26 2012 Jo Lichter <jlichter@web.de> 12.8.12
+- bug: SQL Fehler
+- bug: Anpassungen an das neue Gambas3 (Qt4)
+- new: FirmenID in der Rechnung speichern
+
+* Sun Aug 26 2012 Jo Lichter <jlichter@web.de> 12.8.10
+- update: Gambas3 (Qt4)
+
+* Sat Dec 10 2011 Jo Lichter <jlichter@web.de> 11.12.6
+- add: Kunden Anrede Dr.
+
+* Sun Oct 23 2011 Jo Lichter <jlichter@web.de> 11.10.5
+- update: Debian6
+
+* Mon Aug 15 2011 Jo Lichter <jlichter@web.de> 11.8.3
+- add: Mahnungsdatum in Rechnung eingefügt
+
+* Sat Feb 12 2011 Jo Lichter <jlichter@web.de> 11.2.2
+- bug: Sortierung Laufzeit 'Nächster Termin' (nextbill)
+
+* Thu May 20 2010 Jo Lichter <jlichter@web.de> 10.4.1
+- Initial release

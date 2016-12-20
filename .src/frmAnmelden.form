@@ -1,0 +1,121 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,71,80)
+  Text = ("Anmelden")
+  Icon = Picture["icons/16x16/kexi.png"]
+  Resizable = False
+  { fraDatenbank Frame
+    MoveScaled(1,1,33,77)
+    Text = ("DB-Verbindung dbKuWa3")
+    { lblDB_Typ TextLabel
+      MoveScaled(2,3,25,4)
+      Text = ("Typ")
+      Alignment = Align.Left
+    }
+    { cbxDBTyp ComboBox
+      MoveScaled(2,6,28,4)
+      ReadOnly = True
+    }
+    { lblHost TextLabel
+      MoveScaled(2,13,6,4)
+      Text = ("Host")
+      Alignment = Align.Left
+    }
+    { txtHost TextBox
+      MoveScaled(2,16,28,4)
+      MaxLength = 30
+    }
+    { lblDatenbank TextLabel
+      MoveScaled(2,22,12,4)
+      Text = ("Datenbank")
+      Alignment = Align.Left
+    }
+    { txtDatenbank TextBox
+      MoveScaled(2,25,28,4)
+      MaxLength = 30
+    }
+    { lblDBUser TextLabel
+      MoveScaled(2,32,12,4)
+      Text = ("User")
+      Alignment = Align.Left
+    }
+    { txtUser TextBox
+      MoveScaled(2,35,28,4)
+      MaxLength = 30
+    }
+    { lblPasswort TextLabel
+      MoveScaled(2,42,12,4)
+      Text = ("Passwort")
+      Alignment = Align.Left
+    }
+    { txtPasswort TextBox
+      MoveScaled(2,45,28,4)
+      Password = True
+      MaxLength = 30
+    }
+    { cbxDatenbank_erstellen CheckBox
+      MoveScaled(2,53,26,4)
+      ToolTip = ("eine neue Datenbank wird erstellt")
+      Text = ("Datenbank erstellen")
+    }
+    { cbxDatenbank_repair CheckBox
+      MoveScaled(2,57,26,4)
+      ToolTip = ("führt eine Reparatur durch, die fast alle Fehler beheben kann")
+      Text = ("Datenbank reparieren")
+    }
+    { btnVerbinden ToolButton
+      MoveScaled(4,62,23,7)
+      Background = Color.ButtonBackground
+      Mouse = Mouse.Pointing
+      ToolTip = ("mit DB verbinden und das Programm starten")
+      Text = ("Verbinden")
+      Picture = Picture["icon:/32/connect"]
+      Border = True
+    }
+    { btnDBbeenden ToolButton
+      MoveScaled(4,69,23,7)
+      Mouse = Mouse.Pointing
+      ToolTip = ("ENDE")
+      Text = ("Programm\nbeenden")
+      Picture = Picture["icons/32x32/application-exit.png"]
+      Border = True
+    }
+    { lblHostInfo Label
+      MoveScaled(2,19,28,3)
+      Font = Font["-2"]
+      Text = ("lblHostInfo")
+    }
+    { lblDatenbankInfo Label
+      MoveScaled(2,28,29,3)
+      Font = Font["-2"]
+      Text = ("lblDatenbankInfo")
+    }
+    { lblDBUserInfo Label
+      MoveScaled(2,38,29,3)
+      Font = Font["-2"]
+      Text = ("lblDBUserInfo")
+    }
+    { lblPasswortInfo Label
+      MoveScaled(2,48,29,3)
+      Font = Font["-2"]
+      Text = ("lblPasswortInfo")
+    }
+    { lblSQL_Version Label
+      MoveScaled(2,10,28,3)
+      Font = Font["-2"]
+      Text = ("SQL?")
+    }
+  }
+  { fraInfo Frame
+    MoveScaled(34,1,36,76)
+    Text = ("Info")
+    { txtInfo TextArea
+      MoveScaled(1,4,34,72)
+      Text = ("Info")
+      ReadOnly = True
+      Wrap = True
+      ScrollBar = Scroll.Vertical
+    }
+  }
+}

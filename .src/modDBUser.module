@@ -1,0 +1,25 @@
+' Gambas module file
+
+' Beispiele !
+
+Sub DB_User_anlegen()
+
+    'User in einer MySQL Datenbank anzulegen
+
+    'DB_name = "mysql"
+    'neuuser_dump = "INSERT INTO `user` VALUES ( 'localhost', 'username', password('meinpasswort'), 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', '', '', '', '', 0, 0, 0);"
+    'result = $hConn.Exec(neuuser_dump)
+
+End
+
+
+
+Sub DB_User_Rechte()
+
+    'User Rechte für Datenbank
+
+    'DB_name = "mysql"
+    'neuuserRDB_dump = "INSERT INTO `db` VALUES ('localhost', 'datenbankname', 'username', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'N', 'Y', 'Y', 'N', 'N');"
+    'result = $hConn.Exec(neuuserRDB_dump)
+
+End

@@ -1,0 +1,42 @@
+' Gambas module file
+
+Public Sub Translit(strText As String) As String
+
+'Transliteration (von lateinisch trans ‚hinüber‘) bezeichnet in der angewandten Linguistik die buchstabengetreue Übertragung von Wörtern aus einer Schrift in eine andere.
+'Dabei werden gegebenenfalls diakritische Zeichen eingesetzt, sodass eine eindeutige Rückübertragung möglich wird.
+
+   Dim i As Long
+
+   strText = Replace(strText, Chr(34), "")  'Chr(34) = Anführungszeichen
+   strText = Replace(strText, "'", "")
+   strText = Replace(strText, "&", "")
+   strText = Replace(strText, "%", "")
+   strText = Replace(strText, "*", "")
+   strText = Replace(strText, "+", "")
+   strText = Replace(strText, "~", "")
+   strText = Replace(strText, "$", "")
+   strText = Replace(strText, "#", "")
+   strText = Replace(strText, "?", "")
+   strText = Replace(strText, "!", "")
+   strText = Replace(strText, "/", "")
+   strText = Replace(strText, "|", "")
+   strText = Replace(strText, ".", "")
+   strText = Replace(strText, "]", "")
+   strText = Replace(strText, "[", "")
+   strText = Replace(strText, "{", "")
+   strText = Replace(strText, "}", "")
+
+   strText = Replace(strText, "ä", "ae")
+   strText = Replace(strText, "ü", "ue")
+   strText = Replace(strText, "ö", "oe")
+   strText = Replace(strText, "Ä", "Ae")
+   strText = Replace(strText, "Ü", "Ue")
+   strText = Replace(strText, "Ö", "Oe")
+   strText = Replace(strText, "ß", "ss")
+
+   strText = Replace(strText, "É", "E")
+   strText = Replace(strText, "é", "e")
+
+   strText = Trim(strText)
+   Return strText
+End

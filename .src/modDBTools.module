@@ -1,0 +1,95 @@
+' Gambas module file
+
+
+  'shell: mysqlcheck --repair --all-databases -u root -p // Anschliessend erscheint die Passworteingabe
+  'oder: mysqlcheck --optimize --databases dbKuWa -u root -p
+  'bei sqlite3 geht das per shell so: sqlite3 dbKuWa VACUUM
+
+Sub DB_repair(strDB As String, strUser As String, strPasswort As String)   'DB repair
+Dim strCommand, strRepair As String                                        'Shell-Befehl, DB Reparaturliste
+
+  Application.Busy = 1
+
+    strCommand = "mysqlcheck --repair --databases " & strDB & " -u " & strUser & " -p" & strPasswort
+    Try Shell strCommand To strRepair ' DB reparieren und Informationen in einen String schreiben
+
+Finally
+   Application.Busy = 0
+   frmAnmelden.cbxDatenbank_repair.Value = False ' Checkbox aus
+   Message.Info("Datenbank Reparatur. Tabellen:" & Chr(10) & Chr(10) & strRepair)
+Catch
+   Message.Error(DConv(Error.Text))
+
+End
+
+' -------------------------------------------------------------------------------------------------------------------
+
+Sub DB_optimize(strDB As String, strUser As String, strPasswort As String)   'DB optimize
+Dim strCommand, strOptimize As String                                        'Shell-Befehl, DB Optimierliste
+
+  Application.Busy = 1
+
+  Select frmAnmelden.cbxDBTyp.Text
+    Case "mysql"
+     strCommand = "mysqlcheck --optimize --databases " & strDB & " -u " & strUser & " -p" & strPasswort
+     Try Shell strCommand To strOptimize ' DB optimieren und Informationen in einen String schreiben
+    Case "sqlite3"
+     strCommand = "sqlite3 " & strDB & " VACUUM"
+         If frmAnmelden.strSQLite3Ver = "" Then
+         Message.Error("Kann DB nicht optimieren, weil sqlite3 nicht installiert ist!")
+         Return
+         Else
+         Try Shell strCommand To strOptimize ' DB optimieren und Informationen in einen String schreiben
+         Endif
+
+  End Select
+   Application.Busy = 0
+   Message.Info("Datenbank optimiert" & Chr(10) & Chr(10) & strOptimize)
+
+Finally
+   Application.Busy = 0
+Catch
+   Message.Error(DConv(Error.Text))
+
+End
+
+
+' -------------------------------------------------------------------------------------------------------------------
+
+Sub mysql_install()
+Dim strCommand As String      'Shell-Befehl
+
+    Select Message.Warning("MySQL-Server ist nicht installiert. Bitte erst installieren." & Chr(10) &
+      "z.B. per Terminal:" & Chr(10) & "sudo apt-get install mysql-server" & Chr(10) & Chr(10) &
+      "Dafür wird eine Internetverbindung und das Root-Passwort benötigt!", "OK", "Abruch")
+    Case 1
+    Try Shell "gnome-terminal" Wait
+      'strCommand = "apt-get install mysql-server"
+      'TRY SHELL "gksudo " & strCommand WAIT    ' wenn GNOME
+      'TRY SHELL "kdesudo " & strCommand WAIT   ' wenn KDE
+    Case 2
+      Return 'Abbruch
+    End Select
+
+End
+
+' -------------------------------------------------------------------------------------------------------------------
+
+Sub sqlite3_install()
+Dim strCommand As String      'Shell-Befehl
+
+    Select Message.Warning("sqlite3 ist nicht installiert. Ohne sqlite3 kann die DB nicht optimiert werden." & Chr(10) &
+      "z.B. per Terminal:" & Chr(10) & "sudo apt-get install sqlite3" & Chr(10) & Chr(10) &
+      "Versuche sqlite3 automatisch zu installieren." & Chr(10) &
+      "Dafür wird eine Internetverbindung und das Root-Passwort benötigt!", "OK", "Abruch")
+    Case 1
+      strCommand = "apt-get install sqlite3"
+      Try Shell "gksudo " & strCommand Wait    ' wenn GNOME
+      Try Shell "kdesudo " & strCommand Wait   ' wenn KDE
+    Case 2
+      Return 'Abbruch
+    End Select
+
+End
+
+

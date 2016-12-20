@@ -1,0 +1,1896 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,160,133.2857)
+  Resizable = False
+  { mnuDatei Menu
+    Text = Shortcut(("Datei"), "D")
+    { Info Menu
+      Text = Shortcut(("Info"), "I")
+      Picture = Picture["icons/16x16/dialog-information.png"]
+    }
+    { mnuHilfe Menu
+      Text = Shortcut(("Hilfe"), "H")
+      Picture = Picture["icon:/16/help"]
+    }
+    { mnuBeenden Menu
+      Text = Shortcut(("Beenden"), "B")
+      Picture = Picture["icon:/16/disconnect"]
+    }
+  }
+  { mnuTools Menu
+    Text = Shortcut(("Tools"), "T")
+    { mnuCalculator Menu
+      Text = Shortcut(("Taschenrechner"), "r")
+      Picture = Picture["icons/16x16/accessories-calculator.png"]
+    }
+    { mnuDBopti Menu
+      Text = Shortcut(("Datenbank optimieren"), "D")
+      Picture = Picture["icons/16x16/kexi.png"]
+    }
+    { mnuDBBackup Menu
+      Text = Shortcut(("Datenbank Backup"), "B")
+    }
+    { mnuDBRestore Menu
+      Text = Shortcut(("Datenbank Wiederherstellen"), "W")
+    }
+  }
+  { Panel1 Panel
+    MoveScaled(3,125,154,4)
+    { Label1 Label
+      MoveScaled(1,0,19,4)
+      Text = ("Aktuelle Datenbank:")
+    }
+    { txtAktuelleDB TextLabel
+      MoveScaled(19,0,85,4)
+      Font = Font["Bold"]
+      Text = ("txtAktuelleDB")
+      Alignment = Align.Normal
+    }
+    { txtAktuellesDatum TextLabel
+      MoveScaled(108,0,44,4)
+      Font = Font["+1"]
+      Text = ("txtAktuellesDatum")
+      Alignment = Align.Right
+    }
+  }
+  { tabPanel1 TabPanel
+    MoveScaled(3,2,154,122)
+    Expand = True
+    Count = 4
+    TextFont = Font["Bold"]
+    Index = 0
+    Text = ("KUNDEN")
+    Picture = Picture["icon:/16/people"]
+    { tabKunden TabStrip
+      MoveScaled(2,1,132,115)
+      Count = 2
+      Index = 0
+      Text = ("Firmen")
+      Picture = Picture["icon:/16/exec"]
+      { grvFirma GridView
+        MoveScaled(0,0,131,40)
+        Header = GridView.Horizontal
+      }
+      { cbxFirmaSort ComboBox
+        MoveScaled(117,40,14,4)
+        ToolTip = ("sortieren nach")
+        ReadOnly = True
+        List = [("Nr"), ("Firma"), ("Adresse")]
+      }
+      { lblFirmaNr TextLabel
+        MoveScaled(2,42,10,3)
+        Font = Font["10"]
+        Text = ("Firmen-Nr")
+      }
+      { lblFirma TextLabel
+        MoveScaled(14,42,8,3)
+        Font = Font["10"]
+        Text = ("*Firma")
+      }
+      { lblFirmaAdresse TextLabel
+        MoveScaled(54,42,13,3)
+        Font = Font["10"]
+        Text = ("Adresse")
+      }
+      { valFirmaNr ValueBox
+        MoveScaled(2,45,10,4)
+        Enabled = False
+        Background = Color.Background
+        ToolTip = ("wird automatisch generiert")
+        ReadOnly = True
+      }
+      { txtFirma TextBox
+        MoveScaled(13,45,37,4)
+        Font = Font["10"]
+        MaxLength = 64
+      }
+      { txtFirmaAdresse TextBox
+        MoveScaled(53,45,61,4)
+        Font = Font["10"]
+        MaxLength = 128
+      }
+      { ediFirmaKontakt Editor
+        MoveScaled(1,54,49,13)
+        Font = Font["Andale Mono,-1"]
+        ToolTip = ("Erscheint in der Rechnung\nunten links")
+      }
+      { lblFirmaKontakt TextLabel
+        MoveScaled(2,51,41,3)
+        Font = Font["10"]
+        Text = ("Kontakt (Tel., eMail, Internet usw.)")
+      }
+      { lblFirmaLogo TextLabel
+        MoveScaled(54,51,24,3)
+        Font = Font["10"]
+        Text = ("Link Firmenlogo")
+      }
+      { txtFirmenLogo TextBox
+        MoveScaled(53,54,61,4)
+        Font = Font["-1"]
+        ToolTip = ("Erscheint in der Rechnung\noben links (Logohöhe wird auf\nmax. 500 Pixel skaliert)")
+        MaxLength = 250
+      }
+      { picFirmenlogo PictureBox
+        MoveScaled(114,54,4,4)
+        Mouse = Mouse.Pointing
+        ToolTip = ("Firmenlogo suchen")
+        Picture = Picture["icons/16x16/system-search.png"]
+        Alignment = Align.Center
+      }
+      { chkKleinunternehmen CheckBox
+        MoveScaled(53,63,51,4)
+        ToolTip = ("keine Umsatzsteuer,\nnur Bruttopreise")
+        Text = ("Kleinunternehmen nach §19 Abs. 1 UStG")
+      }
+      { lblZahlungszielRechnungen TextLabel
+        MoveScaled(2,70,19,4)
+        Text = ("Zahlungsziel (Tage)")
+      }
+      { lblSkontoRechnungen TextLabel
+        MoveScaled(25,70,11,3)
+        Text = ("Skonto (%)")
+      }
+      { spnZahlungszielRechnungen SpinBox
+        MoveScaled(2,73,9,4)
+        Value = 30
+      }
+      { spnSkontoRechnungen SpinBox
+        MoveScaled(25,73,9,4)
+        Value = 2
+      }
+      { spnSkontoTageRechnungen SpinBox
+        MoveScaled(37,73,9,4)
+        Value = 10
+      }
+      { TextLabel_Std_Skonto_Tage_Rechnungen TextLabel
+        MoveScaled(38,70,6,3)
+        Text = ("Tage")
+      }
+      { txtFirmaBemerkung TextLabel
+        MoveScaled(2,85,27,3)
+        Text = ("Bemerkung / Firmendetails")
+      }
+      { ediFirmaBemerkung Editor
+        MoveScaled(1,88,59,17)
+        Font = Font["Andale Mono,-1"]
+        ToolTip = ("Erscheint in der Rechnung\noben links (unter dem Logo)\nJe nach Grösse des Logos sind\n1 bis 3 Zeilen möglich")
+        ScrollBar = Scroll.None
+      }
+      { txtFirmaUSt_IdNr TextLabel
+        MoveScaled(62,70,51,3)
+        Text = ("Steuernr, USt-IdNr, Zuständige Aufsichtsbehörde")
+      }
+      { ediFirmaUSt_IdNr Editor
+        MoveScaled(61,73,59,11)
+        Font = Font["Andale Mono,-1"]
+        ToolTip = ("Erscheint in der Rechnung\nunten mitte")
+        ScrollBar = Scroll.None
+      }
+      { txtFirmaBankverbindung TextLabel
+        MoveScaled(62,85,19,3)
+        Text = ("Bankverbindung")
+      }
+      { ediFirmaBankverbindung Editor
+        MoveScaled(61,88,59,17)
+        Font = Font["Andale Mono,-1"]
+        ToolTip = ("Erscheint in der Rechnung\nunten rechts")
+        ScrollBar = Scroll.None
+      }
+      { lblStrich TextLabel
+        MoveScaled(50,45,3,4)
+        Text = ("-")
+        Alignment = Align.Center
+      }
+      Index = 1
+      Text = ("Kunden")
+      Picture = Picture["icon:/16/people"]
+      { grvKunden GridView
+        MoveScaled(0,0,131,49)
+        Expand = True
+        Header = GridView.Horizontal
+      }
+      { valKundenNr ValueBox
+        MoveScaled(1,53,11,4)
+        Enabled = False
+        Background = Color.Background
+        ToolTip = ("Jahr & Monat & frt.lfd.Nr.")
+        ReadOnly = True
+      }
+      { lblFirmaKunde TextLabel
+        MoveScaled(17,50,6,3)
+        Text = ("*Firma")
+      }
+      { cbxFirmaKunde ComboBox
+        MoveScaled(16,53,32,4)
+        ReadOnly = True
+        Sorted = True
+      }
+      { chkFilterFirmaKunde CheckBox
+        MoveScaled(49,53,17,4)
+        ToolTip = ("nach Firma filtern")
+        Text = ("Filter")
+      }
+      { lblKundeAnrede TextLabel
+        MoveScaled(2,59,9,3)
+        Text = ("Anrede")
+      }
+      { cbxKundeAnrede ComboBox
+        MoveScaled(1,62,13,4)
+        ReadOnly = True
+        List = [("Herr"), ("Frau"), ("Familie"), ("Herr Dr."), ("Frau Dr."), ("Firma"), ("Stadt"), ("Gemeinde"), ("Verein")]
+        Text = ("Herr")
+      }
+      { lblKundeName TextLabel
+        MoveScaled(17,59,23,3)
+        Font = Font["10"]
+        Text = ("*Name")
+      }
+      { txtKundeName TextBox
+        MoveScaled(16,62,42,4)
+        MaxLength = 64
+      }
+      { lblKundeVorname TextLabel
+        MoveScaled(60,59,12,3)
+        Font = Font["10"]
+        Text = ("Vorname")
+      }
+      { txtKundeVorname TextBox
+        MoveScaled(59,62,30,4)
+        MaxLength = 64
+      }
+      { lblKundeAbteilung TextLabel
+        MoveScaled(93,59,12,3)
+        Font = Font["10"]
+        Text = ("Abteilung")
+      }
+      { txtKundeAbteilung TextBox
+        MoveScaled(92,62,19,4)
+        MaxLength = 64
+      }
+      { lblKundeStrasse TextLabel
+        MoveScaled(2,67,8,3)
+        Font = Font["10"]
+        Text = ("Straße")
+      }
+      { txtKundeStrasse TextBox
+        MoveScaled(1,70,47,4)
+        Font = Font["10"]
+        MaxLength = 64
+      }
+      { lblKundePLZ TextLabel
+        MoveScaled(54,67,7,3)
+        Font = Font["10"]
+        Text = ("PLZ")
+      }
+      { txtKundePLZ TextBox
+        MoveScaled(53,70,10,4)
+        Font = Font["10"]
+        MaxLength = 16
+      }
+      { lblKundeOrt TextLabel
+        MoveScaled(65,67,14,3)
+        Font = Font["10"]
+        Text = ("Ort")
+      }
+      { txtKundeOrt TextBox
+        MoveScaled(64,70,63,4)
+        Font = Font["10"]
+        MaxLength = 64
+      }
+      { lblKundeTelefon TextLabel
+        MoveScaled(2,75,11,3)
+        Font = Font["10"]
+        Text = ("Telefon")
+      }
+      { txtKundeTelefon TextBox
+        MoveScaled(1,78,30,4)
+        MaxLength = 32
+      }
+      { lblFaxKunde TextLabel
+        MoveScaled(34,75,8,3)
+        Text = ("Fax")
+      }
+      { txtFaxKunde TextBox
+        MoveScaled(33,78,29,4)
+        MaxLength = 32
+      }
+      { lblKundeEMail TextLabel
+        MoveScaled(65,75,7,3)
+        Font = Font["10"]
+        Text = ("EMail")
+      }
+      { txtKundeEMail TextBox
+        MoveScaled(64,78,63,4)
+        MaxLength = 64
+      }
+      { lblKundeBemerkung TextLabel
+        MoveScaled(2,84,12,3)
+        Text = ("Bemerkung")
+      }
+      { chkKundeEMailSenden CheckBox
+        MoveScaled(64,82,28,4)
+        Text = ("Rechnung als eMail senden")
+      }
+      { lblKundeIhrZeichen TextLabel
+        MoveScaled(105,88,11,3)
+        Text = ("Ihr Zeichen")
+      }
+      { txtKundeIhrZeichen TextBox
+        MoveScaled(104,91,23,4)
+        MaxLength = 20
+      }
+      { lblKundeAdressentyp TextLabel
+        MoveScaled(105,97,14,3)
+        Text = ("Adressentyp")
+      }
+      { cbxKundeAdressentyp ComboBox
+        MoveScaled(104,100,23,4)
+        ReadOnly = True
+        List = [("Kundenadresse"), ("Rechnungsadresse"), ("Lieferadresse")]
+        Sorted = True
+      }
+      { chkKundeAktiv CheckBox
+        MoveScaled(16,66,18,4)
+        Text = ("Kunde ist aktiv")
+      }
+      { txtKundeBemerkung Editor
+        MoveScaled(1,87,51,20)
+        ToolTip = ("interne Bemerkung")
+        ScrollBar = Scroll.None
+      }
+      { lblKundeNr TextLabel
+        MoveScaled(1,50,12,3)
+        Font = Font["10"]
+        Text = ("Kunden-Nr")
+      }
+      { cbxKundenSort ComboBox
+        MoveScaled(115,49,16,4)
+        ToolTip = ("sortieren nach")
+        ReadOnly = True
+        List = [("Kd-Nr"), ("Firma-Nr"), ("Name"), ("Vorname"), ("Adr.-Typ")]
+      }
+      { lblFirmaID TextLabel
+        MoveScaled(24,50,11,3)
+        Text = ("ID")
+        Transparent = True
+      }
+      { txtKundeBank Editor
+        MoveScaled(54,87,48,20)
+        ScrollBar = Scroll.None
+      }
+      { lblKundeBank TextLabel
+        MoveScaled(55,84,12,3)
+        Text = ("Bank")
+      }
+      { txtSuchenKunde TextBox
+        MoveScaled(115,52,16,4)
+        Font = Font["Italic,+1"]
+        ToolTip = ("Liste filtern nach Kd-Nr")
+        MaxLength = 20
+      }
+      Index = 0
+    }
+    { btnKnHinzufuegen ToolButton
+      MoveScaled(137,6,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("neuen DS speichern")
+      Text = ("Hinzufügen")
+      Picture = Picture["icon:/16/add"]
+      Border = True
+    }
+    { btnKnNeu ToolButton
+      MoveScaled(137,11,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("neuen DS anlegen")
+      Text = ("Neu")
+      Picture = Picture["icon:/16/new"]
+      Border = True
+    }
+    { btnKnLoeschen ToolButton
+      MoveScaled(137,16,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("unwiderruflich löschen!")
+      Text = ("Löschen")
+      Picture = Picture["icon:/16/erase"]
+      Border = True
+    }
+    { btnKnAendern ToolButton
+      MoveScaled(137,21,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("Änderung speichern")
+      Text = ("Ändern")
+      Picture = Picture["icon:/16/flip-h"]
+      Border = True
+    }
+    { btnKnKopieren ToolButton
+      MoveScaled(137,26,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("kopieren und als neuen DS anlegen ")
+      Text = ("Kopieren")
+      Picture = Picture["icon:/16/copy"]
+      Border = True
+    }
+    Index = 1
+    Text = (" WAREN")
+    Picture = Picture["icon:/16/component"]
+    { tabWaren TabStrip
+      MoveScaled(2,2,132,115)
+      Mouse = Mouse.Arrow
+      Count = 3
+      Index = 0
+      Text = ("Lieferanten")
+      Picture = Picture["icon:/16/language"]
+      { lblWnLieferant TextLabel
+        MoveScaled(13,70,14,3)
+        Font = Font["10"]
+        Text = ("*Lieferant")
+      }
+      { txtWnLieferant TextBox
+        MoveScaled(12,73,33,4)
+        Font = Font["10"]
+        MaxLength = 64
+      }
+      { lblWnLieferantZusatz TextLabel
+        MoveScaled(48,70,13,3)
+        Font = Font["10"]
+        Text = ("Zusatz")
+      }
+      { txtWnLieferantZusatz TextBox
+        MoveScaled(47,73,66,4)
+        Font = Font["10"]
+        MaxLength = 64
+      }
+      { lblWnLieferantInternet TextLabel
+        MoveScaled(2,79,17,3)
+        Font = Font["10"]
+        Text = ("Internet")
+      }
+      { txtWnLieferantInternet TextBox
+        MoveScaled(1,82,75,4)
+        MaxLength = 64
+      }
+      { lblWnLieferantBemerkung TextLabel
+        MoveScaled(2,86,12,3)
+        Text = ("Bemerkung")
+      }
+      { ediWnLieferantBemerkung Editor
+        MoveScaled(1,89,112,20)
+        ToolTip = ("interne Bemerkung")
+        ScrollBar = Scroll.None
+      }
+      { lblWnLieferantNr TextLabel
+        MoveScaled(2,70,9,3)
+        Font = Font["10"]
+        Text = ("Lief.-Nr")
+      }
+      { grvLieferanten GridView
+        MoveScaled(0,1,131,66)
+        Header = GridView.Horizontal
+      }
+      { varWnLieferantNr ValueBox
+        MoveScaled(1,73,10,4)
+        Enabled = False
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { cbxLieferantenSort ComboBox
+        MoveScaled(117,67,14,4)
+        ToolTip = ("sortieren nach")
+        ReadOnly = True
+        List = [("Nr"), ("Lieferant"), ("Zusatz")]
+      }
+      Index = 1
+      Text = ("Waren")
+      Picture = Picture["icon:/16/component"]
+      { cbxWnWarenLieferant ComboBox
+        MoveScaled(13,52,30,4)
+        ReadOnly = True
+        Sorted = True
+      }
+      { cbxWnBereich ComboBox
+        MoveScaled(1,62,31,4)
+        ToolTip = ("Oberbegriff für Kategorie")
+        MaxLength = 30
+      }
+      { cbxWnKategorie ComboBox
+        MoveScaled(1,69,31,4)
+        ToolTip = ("gefiltert bei Bereich\n(erscheint in Rechnung)")
+        MaxLength = 15
+      }
+      { txtWnBeschreibung TextBox
+        MoveScaled(1,77,47,4)
+        ToolTip = ("max. 45 Zeichen\n(erscheint in Rechnung)")
+        MaxLength = 45
+      }
+      { txtWnSpezifikation TextBox
+        MoveScaled(1,86,82,4)
+        MaxLength = 128
+      }
+      { lblWnWarenLieferant TextLabel
+        MoveScaled(14,49,15,3)
+        Text = ("*Lieferant")
+      }
+      { lblWnBereich TextLabel
+        MoveScaled(2,59,24,3)
+        Text = ("*Bereich")
+      }
+      { lblWnKategorie TextLabel
+        MoveScaled(2,66,24,3)
+        Font = Font["10"]
+        Text = ("*Kategorie")
+      }
+      { lblWnBeschreibung TextLabel
+        MoveScaled(2,74,18,3)
+        Font = Font["10"]
+        Text = ("*Beschreibung")
+      }
+      { lblWnSpezifikation TextLabel
+        MoveScaled(1,83,40,3)
+        Font = Font["10"]
+        Text = ("Spezifikation / Details")
+      }
+      { lblWnWarBemerkung TextLabel
+        MoveScaled(2,90,24,3)
+        Text = ("Bemerkung")
+      }
+      { lblWnWarenNr TextLabel
+        MoveScaled(2,49,11,3)
+        Font = Font["10"]
+        Text = ("Waren-Nr")
+      }
+      { fraWnBestand Frame
+        MoveScaled(60,60,38,11)
+        Text = ("Bestand")
+        { txtWnBestandIst TextBox
+          MoveScaled(1,6,9,4)
+          Text = ("0")
+          Alignment = Align.Right
+          MaxLength = 10
+        }
+        { txtWnBestandMin TextBox
+          MoveScaled(11,6,9,4)
+          Text = ("0")
+          Alignment = Align.Right
+          MaxLength = 10
+        }
+        { cbxWnBestandEinheit ComboBox
+          MoveScaled(22,6,15,4)
+          MaxLength = 12
+          Sorted = True
+        }
+        { lblWnBestandIst TextLabel
+          MoveScaled(1,3,7,4)
+          Text = ("Ist")
+        }
+        { lblWnBestandEinheit TextLabel
+          MoveScaled(22,3,12,4)
+          Text = ("Einheit")
+        }
+        { lblWnBestandMin TextLabel
+          MoveScaled(11,3,7,4)
+          Text = ("Min.")
+        }
+      }
+      { fraWnNettopreis Frame
+        MoveScaled(100,60,28,11)
+        Text = ("Nettopreis €")
+        { lblWnEKnetto TextLabel
+          MoveScaled(2,4,9,4)
+          Visible = False
+          Text = ("EK")
+        }
+        { lblWnVKnetto TextLabel
+          MoveScaled(15,4,9,4)
+          Text = ("VK")
+          Alignment = Align.Left
+        }
+        { txtWnEKnetto TextBox
+          MoveScaled(2,7,12,4)
+          Visible = False
+          Text = ("0")
+          Alignment = Align.Right
+          MaxLength = 12
+        }
+        { txtWnVKnetto TextBox
+          MoveScaled(15,7,12,4)
+          Text = ("0")
+          Alignment = Align.Right
+          MaxLength = 12
+        }
+      }
+      { cbxWnMwStCode ComboBox
+        MoveScaled(109,75,10,4)
+        MaxLength = 4
+      }
+      { fraWnBruttopreis Frame
+        MoveScaled(100,81,28,11)
+        Text = ("Bruttopreis €")
+        { lblWnPreisEKBrutto TextLabel
+          MoveScaled(3,4,9,3)
+          Visible = False
+          Text = ("EK")
+        }
+        { lblWnPreisVKBrutto TextLabel
+          MoveScaled(16,4,9,3)
+          Text = ("VK")
+          Alignment = Align.Left
+        }
+        { txtWnPreisEKBrutto TextBox
+          MoveScaled(2,7,12,4)
+          Visible = False
+          Text = ("0")
+          Alignment = Align.Right
+          MaxLength = 12
+        }
+        { txtWnPreisVKBrutto TextBox
+          MoveScaled(15,7,12,4)
+          Text = ("0")
+          Alignment = Align.Right
+          MaxLength = 12
+        }
+      }
+      { btnWnEK_BruttoInNetto ToolButton
+        MoveScaled(101,75,4,4)
+        Visible = False
+        ToolTip = ("EK-Preis Brutto in Netto")
+        Picture = Picture["icon:/16/up"]
+        Border = True
+      }
+      { btnWnEK_NettoInBrutto ToolButton
+        MoveScaled(105,75,4,4)
+        Visible = False
+        ToolTip = ("EK-Preis Netto in Brutto")
+        Picture = Picture["icon:/16/down"]
+        Border = True
+      }
+      { btnWnVK_BruttoInNetto ToolButton
+        MoveScaled(119,75,4,4)
+        ToolTip = ("VK-Preis Brutto in Netto")
+        Picture = Picture["icon:/16/up"]
+        Border = True
+      }
+      { btnWnVK_NettoInBrutto ToolButton
+        MoveScaled(123,75,4,4)
+        ToolTip = ("VK-Preis Netto in Brutto")
+        Picture = Picture["icon:/16/down"]
+        Border = True
+      }
+      { lblWnMwStCode TextLabel
+        MoveScaled(109,72,11,3)
+        Text = ("MwSt Code")
+      }
+      { ediWnWarBemerkung Editor
+        MoveScaled(1,93,128,16)
+        ToolTip = ("interne Bemerkung")
+        ScrollBar = Scroll.None
+      }
+      { grvWaren GridView
+        MoveScaled(0,1,131,47)
+        Expand = True
+        Header = GridView.Horizontal
+      }
+      { chkWnFilterLieferant CheckBox
+        MoveScaled(44,52,13,4)
+        ToolTip = ("nach Lieferant filtern")
+        Text = ("Filter")
+      }
+      { chkWnNichtLagerArtikel CheckBox
+        MoveScaled(22,74,26,4)
+        ToolTip = ("Artikel nicht lagerfähig\nz.B.: Serviceleistungen, Internet-Software usw.\n(ns = non-stockable item)")
+        Text = ("Nicht-Lager-Artikel (ns)")
+      }
+      { fraWnBestandAendern Frame
+        MoveScaled(60,73,38,11)
+        Text = ("Bestand ändern")
+        { txtWnBestandAendernMenge TextBox
+          MoveScaled(1,6,7,4)
+          Text = ("0")
+          Alignment = Align.Right
+          MaxLength = 8
+        }
+        { btnWnBestandEinlagern ToolButton
+          MoveScaled(9,6,14,4)
+          Text = ("Einlagern")
+          Picture = Picture["icon:/16/indent"]
+          Border = True
+        }
+        { btnWnBestandEntnehmen ToolButton
+          MoveScaled(23,6,14,4)
+          Text = ("Entnehmen")
+          Picture = Picture["icon:/16/unindent"]
+          Border = True
+        }
+        { lblWnBestandAendernMenge TextLabel
+          MoveScaled(1,3,8,4)
+          Text = ("Menge")
+        }
+      }
+      { valWnWarenNr ValueBox
+        MoveScaled(1,52,10,4)
+        Enabled = False
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { btnWnEK ToggleButton
+        MoveScaled(100,56,4,4)
+        Font = Font["-2"]
+        ToolTip = ("Einkaufspreis an/aus")
+        Text = ("EK")
+      }
+      { cbxWarenSort ComboBox
+        MoveScaled(113,48,18,4)
+        ToolTip = ("sortieren nach")
+        ReadOnly = True
+        List = [("Nr"), ("Lieferant"), ("Bereich"), ("Kategorie"), ("Beschreibung"), ("Bestand")]
+      }
+      Index = 2
+      Text = ("Ansprechpartner")
+      Picture = Picture["icon:/16/people"]
+      { lblWnAPLieferant TextLabel
+        MoveScaled(17,56,10,3)
+        Text = ("*Lieferant")
+      }
+      { cbxWnAPLieferant ComboBox
+        MoveScaled(16,59,36,4)
+        ReadOnly = True
+        Sorted = True
+      }
+      { lblWnAPAnrede TextLabel
+        MoveScaled(2,66,9,3)
+        Text = ("Anrede")
+      }
+      { cbxWnAPAnrede ComboBox
+        MoveScaled(1,69,13,4)
+        ReadOnly = True
+        List = [("Herr"), ("Frau")]
+        Text = ("Herr")
+      }
+      { lblWnAPName TextLabel
+        MoveScaled(17,66,11,3)
+        Font = Font["10"]
+        Text = ("*Name")
+      }
+      { txtWnAPName TextBox
+        MoveScaled(16,69,32,4)
+        MaxLength = 64
+      }
+      { lblWnAPVorname TextLabel
+        MoveScaled(51,66,12,3)
+        Font = Font["10"]
+        Text = ("Vorname")
+      }
+      { txtWnAPVorname TextBox
+        MoveScaled(50,69,32,4)
+        MaxLength = 64
+      }
+      { lblWnAPAbteilung TextLabel
+        MoveScaled(85,66,12,3)
+        Font = Font["10"]
+        Text = ("Abteilung")
+      }
+      { txtWnAPAbteilung TextBox
+        MoveScaled(84,69,29,4)
+        MaxLength = 64
+      }
+      { lblWnAPStr TextLabel
+        MoveScaled(2,74,8,3)
+        Font = Font["10"]
+        Text = ("Straße")
+      }
+      { txtWnAPStr TextBox
+        MoveScaled(1,77,47,4)
+        Font = Font["10"]
+        MaxLength = 64
+      }
+      { lblWnAPPLZ TextLabel
+        MoveScaled(51,74,6,3)
+        Font = Font["10"]
+        Text = ("PLZ")
+      }
+      { txtWnAPPLZ TextBox
+        MoveScaled(50,77,8,4)
+        Font = Font["10"]
+        MaxLength = 16
+      }
+      { lblWnAPOrt TextLabel
+        MoveScaled(60,74,14,3)
+        Font = Font["10"]
+        Text = ("Ort")
+      }
+      { txtWnAPOrt TextBox
+        MoveScaled(59,77,54,4)
+        Font = Font["10"]
+        MaxLength = 64
+      }
+      { lblWnAPTel TextLabel
+        MoveScaled(2,82,11,3)
+        Font = Font["10"]
+        Text = ("Telefon")
+      }
+      { txtWnAPTel TextBox
+        MoveScaled(1,85,26,4)
+        MaxLength = 32
+      }
+      { lblWnAPFax TextLabel
+        MoveScaled(30,82,8,3)
+        Text = ("Fax")
+      }
+      { txtWnAPFax TextBox
+        MoveScaled(29,85,29,4)
+        MaxLength = 32
+      }
+      { lblWnAPEmail TextLabel
+        MoveScaled(60,82,7,3)
+        Font = Font["10"]
+        Text = ("EMail")
+      }
+      { txtWnAPEmail TextBox
+        MoveScaled(59,85,54,4)
+        MaxLength = 64
+      }
+      { lblWnAPBemerkung TextLabel
+        MoveScaled(2,90,12,3)
+        Text = ("Bemerkung")
+      }
+      { ediWnAPBemerkung Editor
+        MoveScaled(1,93,112,15)
+        ToolTip = ("interne Bemerkung")
+        ScrollBar = Scroll.None
+      }
+      { grvAPLieferant GridView
+        MoveScaled(0,1,131,54)
+        Expand = True
+        Header = GridView.Horizontal
+      }
+      { lblWnAPNr TextLabel
+        MoveScaled(2,56,11,3)
+        Font = Font["10"]
+        Text = ("Nr")
+      }
+      { chkWnAPFilter CheckBox
+        MoveScaled(53,59,15,4)
+        ToolTip = ("nach Lieferant filtern")
+        Text = ("Filter")
+      }
+      { valWnAPNr ValueBox
+        MoveScaled(1,59,13,4)
+        Enabled = False
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { cbxAPSort ComboBox
+        MoveScaled(116,55,15,4)
+        ToolTip = ("sortieren nach")
+        ReadOnly = True
+        List = [("Nr"), ("Lieferant"), ("Name"), ("Vorname")]
+      }
+      Index = 0
+    }
+    { btnWnHinzufuegen ToolButton
+      MoveScaled(137,6,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("neuen DS speichern")
+      Text = ("Hinzufügen")
+      Picture = Picture["icon:/16/add"]
+      Border = True
+    }
+    { btnWnNeu ToolButton
+      MoveScaled(137,11,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("neuen DS anlegen")
+      Text = ("Neu")
+      Picture = Picture["icon:/16/new"]
+      Border = True
+    }
+    { btnWnLoeschen ToolButton
+      MoveScaled(137,16,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("unwiderruflich löschen!")
+      Text = ("Löschen")
+      Picture = Picture["icon:/16/erase"]
+      Border = True
+    }
+    { btnWnAendern ToolButton
+      MoveScaled(137,21,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("Änderung speichern")
+      Text = ("Ändern")
+      Picture = Picture["icon:/16/flip-h"]
+      Border = True
+    }
+    { btnWnKopieren ToolButton
+      MoveScaled(137,26,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("kopieren und als neuen DS anlegen ")
+      Text = ("Kopieren")
+      Picture = Picture["icon:/16/copy"]
+      Border = True
+    }
+    Index = 2
+    Text = (" ANGEBOT und RECHNUNG")
+    Picture = Picture["icons/16x16/kwalletmanager.png"]
+    { grvRechnungen GridView
+      MoveScaled(1,1,102,36)
+      Header = GridView.Horizontal
+    }
+    { lblRechnungsnummer TextLabel
+      MoveScaled(113,1,18,3)
+      Text = ("Rech.-Nr.")
+      Alignment = Align.Left
+    }
+    { btnRechnungHinzufuegen ToolButton
+      MoveScaled(135,5,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("neue Rechnung speichern")
+      Text = ("Hinzufügen")
+      Picture = Picture["icon:/16/add"]
+      Border = True
+    }
+    { cbxRechnungFirmaNr ComboBox
+      MoveScaled(105,4,7,5)
+      ToolTip = ("Filter Firma Nr.")
+      Text = ("FA-Nr")
+    }
+    { valRechnungsnummer ValueBox
+      MoveScaled(112,4,20,5)
+      Enabled = False
+      Font = Font["Bold,+2"]
+      Background = Color.Background
+      ToolTip = ("FirmaNr - JahrMonat - RechNr")
+      ReadOnly = True
+    }
+    { btnRechnungNeu ToolButton
+      MoveScaled(135,9,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("neue Rechnung anlegen")
+      Text = ("Neu")
+      Picture = Picture["icon:/16/new"]
+      Border = True
+    }
+    { fraFilterRechnung Frame
+      MoveScaled(104,9,29,27)
+      Text = ("Filter Rechnungen")
+      { radRechnungAlle RadioButton Filter_Rechnung
+        Name = "radRechnungAlle"
+        MoveScaled(2,5,10,4)
+        Text = ("Alle")
+      }
+      { radRechnungOffen RadioButton Filter_Rechnung
+        Name = "radRechnungOffen"
+        MoveScaled(2,9,12,4)
+        Text = ("Offen")
+        Value = True
+      }
+      { radRechnungAlleBez RadioButton Filter_Rechnung
+        Name = "radRechnungAlleBez"
+        MoveScaled(2,13,20,4)
+        Text = ("Alle bezahlte")
+      }
+      { radRechnungVerzug RadioButton Filter_Rechnung
+        Name = "radRechnungVerzug"
+        MoveScaled(2,17,20,4)
+        Text = ("Zahlungsverzug")
+      }
+      { radRechnungAngebot RadioButton Filter_Rechnung
+        Name = "radRechnungAngebot"
+        MoveScaled(2,21,16,4)
+        Text = ("Angebot")
+      }
+      { radRechnungLaufzeit RadioButton Filter_Rechnung
+        Name = "radRechnungLaufzeit"
+        MoveScaled(15,5,13,4)
+        ToolTip = ("sortiert nach nächsten\nRechnungsterminen")
+        Text = ("Laufzeit")
+      }
+      { radRechnungCancel RadioButton Filter_Rechnung
+        Name = "radRechnungCancel"
+        MoveScaled(15,9,12,4)
+        Text = ("Cancel")
+      }
+    }
+    { btnRechnungAendern ToolButton
+      MoveScaled(135,13,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("Änderung speichern")
+      Text = ("Ändern")
+      Picture = Picture["icon:/16/flip-h"]
+      Border = True
+    }
+    { btnRechnungKopieren ToolButton
+      MoveScaled(135,17,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("kopieren und neue Rechnungsnummer erzeugen")
+      Text = ("Kopieren")
+      Picture = Picture["icon:/16/copy"]
+      Border = True
+    }
+    { btnRechnungDrucken ToolButton
+      MoveScaled(135,21,16,4)
+      Mouse = Mouse.Pointing
+      ToolTip = ("Rechnung drucken")
+      Text = ("Drucken")
+      Picture = Picture["icon:/16/printer"]
+      Border = True
+    }
+    { chkRechnungPDF CheckBox
+      MoveScaled(135,27,17,4)
+      Text = ("PDF erstellen")
+    }
+    { chkRechnungOnline CheckBox
+      MoveScaled(135,31,15,4)
+      ToolTip = ("eMail Programm \"Evolution\"\nmuß dafür installiert sein!")
+      Text = ("als eMail")
+    }
+    { tabRechnung TabStrip
+      MoveScaled(1,38,151,78)
+      Count = 3
+      Index = 0
+      Text = ("Kunde")
+      Picture = Picture["icon:/16/people"]
+      { txtProjektRechnung TextBox
+        MoveScaled(41,44,57,4)
+        ToolTip = ("max. 50 Zeichen")
+        MaxLength = 50
+      }
+      { txtFirmaKundeRechnung TextBox
+        MoveScaled(1,53,33,4)
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { valNrFirmaRechnung ValueBox
+        MoveScaled(34,53,6,4)
+        Enabled = False
+        Background = Color.Background
+        ToolTip = ("Firma ID")
+        ReadOnly = True
+      }
+      { txtIhrZeichenRechnung TextBox
+        MoveScaled(50,53,17,4)
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { txtAnredeKundeRechnung TextBox
+        MoveScaled(1,60,13,4)
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { txtNameKundeRechnung TextBox
+        MoveScaled(16,60,32,4)
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { txtVornameKundeRechnung TextBox
+        MoveScaled(50,60,29,4)
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { txtAbteilungKundeRechnung TextBox
+        MoveScaled(80,60,36,4)
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { txtStrasseKundeRechnung TextBox
+        MoveScaled(1,67,47,4)
+        Font = Font["10"]
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { txtPLZKundeRechnung TextBox
+        MoveScaled(50,67,10,4)
+        Font = Font["10"]
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { txtOrtKundeRechnung TextBox
+        MoveScaled(61,67,67,4)
+        Font = Font["10"]
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { grvKundenRechnung GridView
+        MoveScaled(0,0,150,39)
+        Header = GridView.Horizontal
+      }
+      { cbxAdressentypRechnungKunde ComboBox
+        MoveScaled(1,44,33,4)
+        Enabled = False
+        ReadOnly = True
+        List = [("Kundenadresse"), ("Rechnungsadresse"), ("Lieferadresse")]
+      }
+      { chkFilterAdressentypRechnung CheckBox
+        MoveScaled(17,41,16,3)
+        ToolTip = ("nach Adr.-Typ filtern")
+        Text = ("Filter")
+      }
+      { lblAdressentypRechnung TextLabel
+        MoveScaled(2,41,14,3)
+        Text = ("Adressentyp")
+      }
+      { lblNameKundeRechnung TextLabel
+        MoveScaled(17,57,11,3)
+        Font = Font["10"]
+        Text = ("Name")
+      }
+      { lblVornameKundeRechnung TextLabel
+        MoveScaled(51,57,12,3)
+        Font = Font["10"]
+        Text = ("Vorname")
+      }
+      { lblAbteilungKundeRechnung TextLabel
+        MoveScaled(81,57,12,3)
+        Font = Font["10"]
+        Text = ("Abteilung")
+      }
+      { lblPLZKundeRechnung TextLabel
+        MoveScaled(51,64,7,3)
+        Font = Font["10"]
+        Text = ("PLZ")
+      }
+      { lblOrtKundeRechnung TextLabel
+        MoveScaled(62,64,14,3)
+        Font = Font["10"]
+        Text = ("Ort")
+      }
+      { lblStrasseKundeRechnung TextLabel
+        MoveScaled(2,64,8,3)
+        Font = Font["10"]
+        Text = ("Straße")
+      }
+      { lblFirmaKundeRechnung TextLabel
+        MoveScaled(2,50,8,3)
+        Text = ("Firma")
+      }
+      { lblNrFirmaRechnung TextLabel
+        MoveScaled(35,50,7,3)
+        Text = ("Nr")
+      }
+      { lblAnredeKundeRechnung TextLabel
+        MoveScaled(2,57,9,3)
+        Text = ("Anrede")
+      }
+      { lblProjektRechnung TextLabel
+        MoveScaled(42,41,13,3)
+        Text = ("*Projekt")
+      }
+      { lblIhrZeichenRechnung TextLabel
+        MoveScaled(51,50,13,3)
+        Text = ("Ihr Zeichen")
+      }
+      { lblIDKundeRechnung TextLabel
+        MoveScaled(69,50,11,3)
+        Text = ("Kunden-Nr")
+      }
+      { valIDKundeRechnung ValueBox
+        MoveScaled(68,53,11,4)
+        Enabled = False
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { txtEMailKundeRechnung TextBox
+        MoveScaled(80,53,48,4)
+        Background = Color.Background
+        ReadOnly = True
+      }
+      { lblEMailKundeRechnung TextLabel
+        MoveScaled(81,50,7,3)
+        Text = ("Email")
+      }
+      { cbxRechnungKundenSort ComboBox
+        MoveScaled(134,41,16,4)
+        ToolTip = ("sortieren nach")
+        ReadOnly = True
+        List = [("Kd-Nr"), ("Firma-Nr"), ("Anrede"), ("Name"), ("Vorname"), ("Adr.-Typ")]
+      }
+      { btnKundendatenAendern ToolButton
+        MoveScaled(35,44,4,4)
+        Mouse = Mouse.Pointing
+        ToolTip = ("Kundendaten ändern")
+        Picture = Picture["icons/16x16/edit-find-user.png"]
+        Border = True
+      }
+      { btnAngebot ToggleButton
+        MoveScaled(99,44,19,4)
+        Mouse = Mouse.Pointing
+        ToolTip = ("Angebot / Rechnung")
+        Text = ("als Rechnung")
+        Picture = Picture["icon:/16/view-hidden"]
+      }
+      { txtSuchenRechnung TextBox
+        MoveScaled(134,44,16,4)
+        Font = Font["Italic,+1"]
+        ToolTip = ("Liste filtern nach Kd-Nr")
+        MaxLength = 20
+      }
+      Index = 1
+      Text = ("Waren")
+      Picture = Picture["icon:/16/component"]
+      { txtMengeFreiWarenRechnung TextBox
+        MoveScaled(1,39,10,4)
+        Text = ("1")
+        Alignment = Align.Right
+        MaxLength = 10
+      }
+      { txtKategorieFreiWaren TextBox
+        MoveScaled(14,39,19,4)
+        ToolTip = ("max. 15 Zeichen")
+        MaxLength = 15
+      }
+      { txtArtikelFreiWaren TextBox
+        MoveScaled(35,39,54,4)
+        ToolTip = ("max. 45 Zeichen")
+        MaxLength = 45
+      }
+      { txtNettopreisFreiWarenRechnung TextBox
+        MoveScaled(90,39,10,4)
+        Alignment = Align.Right
+        MaxLength = 12
+      }
+      { txtBruttopreisFreiWarenRechnung TextBox
+        MoveScaled(120,39,10,4)
+        Alignment = Align.Right
+        MaxLength = 12
+      }
+      { grvWarenRechnung GridView
+        MoveScaled(1,0,137,29)
+        ToolTip = ("Waren")
+        Header = GridView.Horizontal
+      }
+      { lblWarenRechnungInfo TextLabel
+        MoveScaled(130,60,19,11)
+        Font = Font["-1"]
+        Foreground = &HC00000&
+        ToolTip = ("Info")
+        Text = ("Info Box")
+        Alignment = Align.BottomRight
+      }
+      { grvPositionenRechnung GridView
+        MoveScaled(1,43,128,29)
+        ToolTip = ("Rechnungspositionen")
+        Header = GridView.Horizontal
+      }
+      { lblMengeWarenRechnung TextLabel
+        MoveScaled(139,4,8,3)
+        Text = ("Menge")
+        Alignment = Align.Left
+      }
+      { txtMengePosition TextBox
+        MoveScaled(138,7,10,4)
+        ToolTip = ("Menge die per Doppelklick in die\nRechnungsposition eingefügt wird")
+        Text = ("1")
+        Alignment = Align.Right
+        MaxLength = 10
+      }
+      { lblMengeFreiWarenRechnung TextLabel
+        MoveScaled(2,37,8,3)
+        Text = ("Menge")
+      }
+      { lblBeschreibungFreiWaren TextLabel
+        MoveScaled(36,37,33,3)
+        Text = ("Beschreibung")
+      }
+      { lblNettopreisFreiWarenRechnung TextLabel
+        MoveScaled(91,37,10,3)
+        Text = ("Netto €")
+      }
+      { cbxMwStFreiWarenRechnung ComboBox
+        MoveScaled(104,39,12,4)
+        MaxLength = 4
+      }
+      { lblBruttopreisFreiWarenRechnung TextLabel
+        MoveScaled(121,37,10,3)
+        Text = ("Brutto €")
+      }
+      { TextLabel_MwSt_frei_Waren_Rechnung TextLabel
+        MoveScaled(105,37,9,3)
+        Text = ("MwSt %")
+      }
+      { btnNettoInBruttoFreiWarenRechnung ToolButton
+        MoveScaled(100,39,4,4)
+        ToolTip = ("Netto in Brutto")
+        Picture = Picture["icon:/16/right"]
+        Border = True
+      }
+      { btnBruttoInNettoFreiWarenRechnung ToolButton
+        MoveScaled(116,39,4,4)
+        ToolTip = ("Brutto in Netto")
+        Picture = Picture["icon:/16/left"]
+        Border = True
+      }
+      { btnZufuegenFreiPosition ToolButton
+        MoveScaled(132,39,4,4)
+        Mouse = Mouse.Pointing
+        ToolTip = ("Produkt hinzufügen,\nwelches nicht in der\nWarenliste enthalten ist")
+        Picture = Picture["icon:/16/add"]
+        Border = True
+      }
+      { btnLoeschenPosition ToolButton
+        MoveScaled(130,55,12,4)
+        Enabled = False
+        Mouse = Mouse.Pointing
+        ToolTip = ("Lösche markierte Rechnungspositionen")
+        Text = ("Löschen")
+        Picture = Picture["icon:/16/erase"]
+        Border = True
+      }
+      { lblPositionenRechnung TextLabel
+        MoveScaled(130,44,19,3)
+        Text = ("Rechnungspositionen")
+      }
+      { txtMengeNeuPosition TextBox
+        MoveScaled(130,47,10,4)
+        Enabled = False
+        Text = ("1")
+        Alignment = Align.Right
+        MaxLength = 10
+      }
+      { lblMengeAendernPosition TextLabel
+        MoveScaled(130,51,14,3)
+        Text = ("Menge ändern")
+      }
+      { cbxWNLieferantRechnung ComboBox
+        MoveScaled(1,32,33,4)
+        ReadOnly = True
+      }
+      { chkLieferantFilterRechnung CheckBox
+        MoveScaled(35,32,9,4)
+        ToolTip = ("nach Lieferant filtern")
+        Text = ("Filter")
+      }
+      { cbxWNBereichRechnung ComboBox
+        MoveScaled(46,32,33,4)
+        ReadOnly = True
+      }
+      { chkBereichFilterRechnung CheckBox
+        MoveScaled(80,32,13,4)
+        ToolTip = ("nach Bereich filtern")
+        Text = ("Filter")
+      }
+      { lblFilterLieferantRechnung TextLabel
+        MoveScaled(2,29,10,3)
+        Text = ("Lieferant")
+      }
+      { lblFilterBereichRechnung TextLabel
+        MoveScaled(47,29,9,3)
+        Text = ("Bereich")
+      }
+      { cbxRechnungWarenSort ComboBox
+        MoveScaled(123,29,15,4)
+        ToolTip = ("sortieren nach")
+        ReadOnly = True
+        List = [("Nr"), ("Lieferant"), ("Bereich"), ("Kategorie"), ("Beschreibung")]
+      }
+      { lblKategorieFreiWaren TextLabel
+        MoveScaled(15,37,18,2)
+        Text = ("Kategorie")
+      }
+      { lblWarenRechnung TextLabel
+        MoveScaled(139,1,9,3)
+        Text = ("Waren")
+      }
+      Index = 2
+      Text = ("Rechnungsdaten")
+      Picture = Picture["icon:/16/tools"]
+      { valBestelldatumRechnung ValueBox
+        MoveScaled(2,5,24,4)
+        Type = ValueBox.Date
+      }
+      { valRechnungsdatumRechnung ValueBox
+        MoveScaled(35,5,24,4)
+        Type = ValueBox.Date
+      }
+      { valLieferdatumRechnung ValueBox
+        MoveScaled(68,5,24,4)
+        Type = ValueBox.Date
+      }
+      { valZahlungsfristSkonto ValueBox
+        MoveScaled(2,13,24,4)
+        Background = Color.Background
+        Type = ValueBox.Date
+        ReadOnly = True
+      }
+      { valZahlungsfristRechnung ValueBox
+        MoveScaled(35,13,24,4)
+        Background = Color.Background
+        Type = ValueBox.Date
+        ReadOnly = True
+      }
+      { valZahlungseingangRechnung ValueBox
+        MoveScaled(68,13,24,4)
+        Type = ValueBox.Date
+      }
+      { spnRabattRechnung SpinBox
+        MoveScaled(114,13,7,4)
+      }
+      { txtAuftraggeberRechnung TextBox
+        MoveScaled(2,21,24,4)
+        MaxLength = 64
+      }
+      { txtAbholerRechnung TextBox
+        MoveScaled(35,21,24,4)
+        MaxLength = 64
+      }
+      { lblBestelldatumRechnung TextLabel
+        MoveScaled(3,2,15,3)
+        Text = ("Bestelldatum")
+      }
+      { txtLieferdatumRechnung TextLabel
+        MoveScaled(69,2,13,3)
+        Text = ("Lieferdatum")
+      }
+      { lblZahlungsartRechnung TextLabel
+        MoveScaled(3,25,16,3)
+        Text = ("Zahlungsart")
+      }
+      { cbxZahlungsartRechnung ComboBox
+        MoveScaled(2,28,24,4)
+        ReadOnly = True
+        List = [("Rechnung"), ("Barzahlung"), ("Kartenzahlung"), ("Vorkasse"), ("Nachnahme"), ("Abbuchung")]
+      }
+      { lblAuftraggeberRechnung TextLabel
+        MoveScaled(3,18,14,3)
+        Text = ("Auftraggeber")
+      }
+      { lblAbholerRechnung TextLabel
+        MoveScaled(36,18,11,3)
+        Text = ("Abholer")
+      }
+      { lblLieferartRechnung TextLabel
+        MoveScaled(30,25,14,3)
+        Text = ("Lieferart")
+      }
+      { cbxLieferartRechnung ComboBox
+        MoveScaled(29,28,24,4)
+        ReadOnly = True
+        List = [("Internet"), ("Dienstleistung"), ("Versand"), ("Selbstabholer")]
+      }
+      { lblZahlungsfristSkonto TextLabel
+        MoveScaled(3,10,24,3)
+        Text = ("Zahlungsfrist mit Skonto")
+      }
+      { lblZahlungsfristRechnung TextLabel
+        MoveScaled(36,10,16,3)
+        Text = ("Zahlungsfrist")
+      }
+      { fraStatusRechnung Frame Status_Rechnung
+        Name = "fraStatusRechnung"
+        MoveScaled(61,32,60,10)
+        Text = ("Status")
+        { radStatusOffenRechnung RadioButton Status_Rechnung
+          Name = "radStatusOffenRechnung"
+          MoveScaled(4,4,9,4)
+          Text = ("Offen")
+          Value = True
+        }
+        { radStatusBezahltRechnung RadioButton Status_Rechnung
+          Name = "radStatusBezahltRechnung"
+          MoveScaled(17,4,12,4)
+          Text = ("Bezahlt")
+        }
+        { radStatusAngebot RadioButton Status_Rechnung
+          Name = "radStatusAngebot"
+          MoveScaled(32,4,11,4)
+          ToolTip = ("Bei einem Angebot werden keine\nWaren aus dem Bestand entfernt")
+          Text = ("Angebot")
+        }
+        { radStatusCancel RadioButton Status_Rechnung
+          Name = "radStatusCancel"
+          MoveScaled(47,4,10,4)
+          Text = ("Cancel")
+        }
+      }
+      { lblRechnungsdatumRechnung TextLabel
+        MoveScaled(36,2,18,3)
+        Text = ("Rechnungsdatum")
+      }
+      { lblZahlungseingangRechnung TextLabel
+        MoveScaled(69,10,18,3)
+        Text = ("Zahlungseingang")
+      }
+      { lblNettoRechnung TextLabel
+        MoveScaled(79,18,14,3)
+        Text = ("Netto €")
+        Alignment = Align.Center
+      }
+      { lblMwStRechnung TextLabel
+        MoveScaled(93,18,14,3)
+        Text = ("MwSt €")
+        Alignment = Align.Center
+      }
+      { lblBruttoRechnung TextLabel
+        MoveScaled(107,18,14,3)
+        Text = ("Brutto €")
+        Alignment = Align.Center
+      }
+      { txtNettoErmRechnung TextBox
+        MoveScaled(79,21,14.1429,4)
+        Alignment = Align.Right
+        ReadOnly = True
+      }
+      { txtMwStErmRechnung TextBox
+        MoveScaled(93,21,14.1429,4)
+        Alignment = Align.Right
+        ReadOnly = True
+      }
+      { txtBruttoErmRechnung TextBox
+        MoveScaled(107,21,14.1429,4)
+        Alignment = Align.Right
+        ReadOnly = True
+      }
+      { lblErmMwStRechnung TextLabel
+        MoveScaled(63,21,15,3)
+        Font = Font["10"]
+        Text = ("Erm. MwSt")
+        Alignment = Align.Right
+      }
+      { lblVolleMwStRechnung TextLabel
+        MoveScaled(62,24,16,3)
+        Text = ("Volle MwSt")
+        Alignment = Align.Right
+      }
+      { lblGesamtbetragRechnung TextLabel
+        MoveScaled(70,27,8,3)
+        Text = ("Gesamt")
+        Alignment = Align.Right
+      }
+      { txtNettoVollRechnung TextBox
+        MoveScaled(79,24,14.1429,4)
+        Alignment = Align.Right
+        ReadOnly = True
+      }
+      { txtMwStVollRechnung TextBox
+        MoveScaled(93,24,14.1429,4)
+        Alignment = Align.Right
+        ReadOnly = True
+      }
+      { txtBruttoVollRechnung TextBox
+        MoveScaled(107,24,14.1429,4)
+        Alignment = Align.Right
+        ReadOnly = True
+      }
+      { txtNettoGesamtRechnung TextBox
+        MoveScaled(79,27,14.1429,4)
+        Font = Font["Bold,10"]
+        Alignment = Align.Right
+        ReadOnly = True
+      }
+      { txtMwStGesamtRechnung TextBox
+        MoveScaled(93,27,14.1429,4)
+        Font = Font["Bold,10"]
+        Alignment = Align.Right
+        ReadOnly = True
+      }
+      { txtBruttoGesamtRechnung TextBox
+        MoveScaled(107,27,14.1429,4)
+        Font = Font["Bold,10"]
+        Alignment = Align.Right
+        ReadOnly = True
+      }
+      { lblBemerkungRechnung TextLabel
+        MoveScaled(123,45,23,3)
+        Text = ("Textende /\nBemerkung")
+        Alignment = Align.TopLeft
+      }
+      { ediBemerkungRechnung Editor
+        MoveScaled(2,43,119,22)
+        ToolTip = ("Erscheint unten in der Rechnung")
+        ScrollBar = Scroll.None
+      }
+      { lblRabattRechnung TextLabel
+        MoveScaled(103,13,10,4)
+        Text = ("Rabatt %")
+        Alignment = Align.Right
+      }
+      { lblZahlungszielRechnung TextLabel
+        MoveScaled(3,34,12,3)
+        Text = ("Zahlungsziel")
+      }
+      { lblZahlungszielRechnung2 TextLabel
+        MoveScaled(12,38,5,3)
+        Text = ("Tage")
+      }
+      { lblSkontoRechnungen2 TextLabel
+        MoveScaled(22,34,8,3)
+        Text = ("Skonto")
+      }
+      { lblSkontoProzentRechnung TextLabel
+        MoveScaled(31,38,4,3)
+        Text = ("%")
+      }
+      { lblSkontoTageRechnung TextLabel
+        MoveScaled(38,34,12,3)
+        Text = ("Skonto Tage")
+      }
+      { valZahlungszielRechnung ValueBox
+        MoveScaled(2,37,9,4)
+      }
+      { valSkontoRechnungen2 ValueBox
+        MoveScaled(21,37,8,4)
+      }
+      { valSkontoTageRechnung ValueBox
+        MoveScaled(37,37,9,4)
+      }
+      { spnLaufzeitRechnung SpinBox
+        MoveScaled(114,4,7,4)
+        ToolTip = ("Nächster Rechnungstermin =\nLieferdatum plus Monatslaufzeit")
+        MaxValue = 36
+      }
+      { lblRabattRechnung2 TextLabel
+        MoveScaled(99,3,14,5)
+        Text = ("Laufzeit Monate\n(intern) ")
+        Alignment = Align.Right
+      }
+      { btnNextBill Button
+        MoveScaled(121,4,9,4)
+        ToolTip = ("Nächste Laufzeitrechnung\nerstellen....")
+        Text = ("NextBill")
+      }
+      { ediBemerkungIntRechnung Editor
+        MoveScaled(2,65,119,7)
+        Font = Font["Courier New"]
+        ToolTip = ("nur Intern!")
+        ScrollBar = Scroll.None
+      }
+      { lblBemerkungRechnungIntern TextLabel
+        MoveScaled(123,66,22,3)
+        Text = ("interne Bemerkung")
+        Alignment = Align.TopLeft
+      }
+      Index = 0
+    }
+    Index = 3
+    Text = ("EINSTELLUNGEN")
+    Picture = Picture["icons/16x16/configure.png"]
+    { TabEinstellungen TabStrip
+      MoveScaled(2,2,150,104)
+      Count = 4
+      Index = 0
+      Text = ("MwSt")
+      Picture = Picture["icon:/16/book"]
+      { lblEinstMwStErm TextLabel
+        MoveScaled(7,9,27,4)
+        Text = ("Code 1: Ermäßigte MwSt")
+      }
+      { lblEinstMwStVoll TextLabel
+        MoveScaled(7,18,25,4)
+        Text = ("Code 2: Volle MwSt")
+      }
+      { txtEinstMwStErm TextBox
+        MoveScaled(7,12,11,4)
+        Font = Font["Bold"]
+        Alignment = Align.Right
+        MaxLength = 4
+      }
+      { txtEinstMwStVoll TextBox
+        MoveScaled(7,21,11,4)
+        Font = Font["Bold"]
+        Alignment = Align.Right
+        MaxLength = 4
+      }
+      { Label2 Label
+        MoveScaled(19,12,5,4)
+        Text = ("%")
+      }
+      { Label3 Label
+        MoveScaled(19,21,5,4)
+        Text = ("%")
+      }
+      { Label5 Label
+        MoveScaled(43,10,78,14)
+        Font = Font["Italic"]
+        Text = ("Wenn sich die MwSt (USt) ändert, behalten alte Rechnungen ihre\nMwSt. Diese Rechnungspositionen dürfen nicht geändert werden,\nda sonst dort eine falsche MwSt eingetragen würde! ")
+        Alignment = Align.TopLeft
+      }
+      { btnEinstWarenAnpassen Button
+        MoveScaled(43,32,21,10)
+        Mouse = Mouse.Pointing
+        ToolTip = ("Bruttopreise mit MwSt anpassen")
+        Text = ("Waren\nBruttopreise\nanpassen")
+        Picture = Picture["icons/32x32/system-search.png"]
+      }
+      Index = 1
+      Text = ("Texte 1")
+      Picture = Picture["icon:/16/text"]
+      { lblTextHerr Label
+        MoveScaled(5,4,30,4)
+        Text = ("Anrede wenn Herr")
+      }
+      { lblTextFrau Label
+        MoveScaled(5,10,30,4)
+        Text = ("Anrede wenn Frau")
+      }
+      { lblTextFamilie Label
+        MoveScaled(5,16,30,4)
+        Text = ("Anrede wenn Familie")
+      }
+      { lblTextFirma Label
+        MoveScaled(5,34,30,4)
+        Text = ("Anrede wenn Firma")
+      }
+      { lblTextStadt Label
+        MoveScaled(5,40,30,4)
+        Text = ("Anrede wenn Stadt")
+      }
+      { lblTextGemeinde Label
+        MoveScaled(5,46,30,4)
+        Text = ("Anrede wenn Gemeinde")
+      }
+      { lblTextStatusrechnung Label
+        MoveScaled(5,58,30,4)
+        Text = ("kleiner Text unter Rechnung Nr.")
+      }
+      { lblTextStatusAngebot Label
+        MoveScaled(5,64,30,4)
+        Text = ("kleiner Text unter Angebot Nr.")
+      }
+      { txtAnredeHerr TextBox
+        MoveScaled(44,4,79,4)
+        Text = ("txtAnredeHerr")
+        MaxLength = 100
+      }
+      { txtAnredeFrau TextBox
+        MoveScaled(44,10,79,4)
+        Text = ("txtAnredeFrau")
+        MaxLength = 100
+      }
+      { txtAnredeFamilie TextBox
+        MoveScaled(44,16,79,4)
+        Text = ("txtAnredeFamilie")
+        MaxLength = 100
+      }
+      { txtAnredeFirma TextBox
+        MoveScaled(44,34,79,4)
+        Text = ("txtAnredeFirma")
+        MaxLength = 100
+      }
+      { txtAnredeStadt TextBox
+        MoveScaled(44,40,79,4)
+        Text = ("txtAnredeStadt")
+        MaxLength = 100
+      }
+      { txtAnredeGemeinde TextBox
+        MoveScaled(44,46,79,4)
+        Text = ("txtAnredeGemeinde")
+        MaxLength = 100
+      }
+      { txtTextStatusRechnung TextBox
+        MoveScaled(44,58,79,4)
+        Font = Font["-1"]
+        Text = ("txtTextStatusrechnung")
+        MaxLength = 100
+      }
+      { txtTextStatusAngebot TextBox
+        MoveScaled(44,64,79,4)
+        Font = Font["-1"]
+        Text = ("txtTextStatusAngebot")
+        MaxLength = 100
+      }
+      { lblTextHerrDr Label
+        MoveScaled(5,22,30,4)
+        Text = ("Anrede wenn Herr Dr.")
+      }
+      { txtAnredeHerrDr TextBox
+        MoveScaled(44,22,79,4)
+        Text = ("txtAnredeHerrDr")
+        MaxLength = 100
+      }
+      { lblTextFrauDr Label
+        MoveScaled(5,28,30,4)
+        Text = ("Anrede wenn Frau Dr.")
+      }
+      { txtAnredeFrauDr TextBox
+        MoveScaled(44,28,79,4)
+        Text = ("txtAnredeFrauDr")
+        MaxLength = 100
+      }
+      { lblTextVerein Label
+        MoveScaled(5,52,30,4)
+        Text = ("Anrede wenn Verein")
+      }
+      { txtAnredeVerein TextBox
+        MoveScaled(44,52,79,4)
+        Text = ("txtAnredeVerein")
+        MaxLength = 100
+      }
+      Index = 2
+      Text = ("Texte 2")
+      Picture = Picture["icon:/16/text"]
+      { lblTextEinleitung2 Label
+        MoveScaled(4,24,35,4)
+        Text = ("Text unter der Anrede, wenn Angebot")
+      }
+      { lblTextMahnung Label
+        MoveScaled(5,46,47,4)
+        Text = ("Text Mahnung (Filter Rechnungen - Zahlungsverzug)")
+      }
+      { lblBemerkungRechnung2 Label
+        MoveScaled(5,71,98,4)
+        Text = ("Text Rechnung unten; ist in jeder Rechnung veränderbar (Bemerkung / Textende)")
+      }
+      { lblTextEinleitung1 Label
+        MoveScaled(4,6,36,4)
+        Text = ("Text unter der Anrede, wenn Rechnung")
+      }
+      { ediTextEinleitung1 Editor
+        MoveScaled(42,6,88,16.7143)
+        ToolTip = ("max. 4 Zeilen")
+        ScrollBar = Scroll.None
+      }
+      { ediTextEinleitung2 Editor
+        MoveScaled(42,24,88,16.7143)
+        ToolTip = ("max. 4 Zeilen")
+        ScrollBar = Scroll.None
+      }
+      { ediTextMahnung Editor
+        MoveScaled(4,50,126,18)
+        ToolTip = ("max. 4 Zeilen")
+        ScrollBar = Scroll.None
+      }
+      { ediBemerkungRechnung2 Editor
+        MoveScaled(4,75,126,23.2857)
+        ToolTip = ("max. 4 Zeilen")
+        ScrollBar = Scroll.None
+      }
+      Index = 3
+      Text = ("Drucker")
+      Picture = Picture["icon:/16/print"]
+      { chkEinstFaltmarkenRechnung CheckBox
+        MoveScaled(6,10,24,4)
+        Text = ("Faltmarken drucken")
+      }
+      { chkEinstLochmarkeRechnung CheckBox
+        MoveScaled(6,15,24,4)
+        Text = ("Lochmarken drucken")
+      }
+      { Label4 Label
+        MoveScaled(14,22,35,4)
+        Text = ("Seitenanzahl zum drucken festlegen")
+      }
+      { spnEinstSeitenanzahlRechnung SpinBox
+        MoveScaled(6,22,7,4)
+        MinValue = 1
+        MaxValue = 6
+        Value = 2
+      }
+      { spnEinst2teSeite SpinBox
+        MoveScaled(6,28,7,4)
+        MinValue = 5
+        MaxValue = 10
+        Value = 2
+      }
+      { Label7 Label
+        MoveScaled(14,28,35,4)
+        Text = ("2te Seite wenn mehr als x Postionen")
+      }
+      Index = 0
+    }
+    { btnConfigSave ToolButton
+      MoveScaled(5,109,19,7)
+      Mouse = Mouse.Pointing
+      Text = ("Konfiguration\nSpeichern")
+      Picture = Picture["icon:/32/save"]
+      Border = True
+    }
+    Index = 0
+  }
+}
