@@ -15,10 +15,9 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-Count=2
+Count=1
+Active=1
 File[1]=".src/frmAnmelden.form"
-Active=2
-File[2]=".src/frmVerw.class:0.4934"
 
 [Watches]
 Count=0

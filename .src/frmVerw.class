@@ -2553,7 +2553,7 @@ Public Sub Rechnungen_einlesen()
             'Nächster Termin (nextbill) ist das Lieferdatum plus die Monatslaufzeit
            ' datTermin = DateAdd(rsSQLRechnung!nextbill, gb.Month, rsSQLRechnung!laufzeit_rechnung)
             datTermin = rsSQLRechnung!nextbill
-            grvRechnungen[c, 3].Text = Format$(datTermin, "yyyy-mm-yy")
+            grvRechnungen[c, 3].Text = Format$(datTermin, "yyyy-mm-dd")
 
           Endif
        rsSQLRechnung.MoveNext
