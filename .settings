@@ -17,7 +17,7 @@ SearchString=True
 [OpenFile]
 Count=1
 Active=1
-File[1]=".src/frmAnmelden.form"
+File[1]=".hidden/CHANGELOG:0.0"
 
 [Watches]
 Count=0

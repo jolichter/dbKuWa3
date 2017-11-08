@@ -83,7 +83,7 @@ Public Sub Form_Open()
 Dim intMonat, intJahr, intKW As Integer
 
     'aktuelles Datum und KW nach ISO 8601
-    strDatum = Format$(Now, "yyyy-mm-yy")
+    strDatum = Format$(Now, "yyyy-mm-dd")
      If Week(Date(Now)) = 0 Then ' wenn 0 dann KW vom letzten Tag im Vorjahr
       intKW = Week(Date(Year(Now) - 1, 12, 31))
        Else
@@ -3863,7 +3863,7 @@ Dim menge_position_rechnung, mwst_position_rechnung, mwst_code_position_rechnung
 
 
    grvRechnungen[grvRechnungen.Row, 2].Text = txtProjektRechnung.Text
-   grvRechnungen[grvRechnungen.Row, 3].Text = Format$(valRechnungsdatumRechnung.Value, "yyyy-mm-yy")
+   grvRechnungen[grvRechnungen.Row, 3].Text = Format$(valRechnungsdatumRechnung.Value, "yyyy-mm-dd")
 
 
      'Status
