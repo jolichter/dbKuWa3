@@ -63,9 +63,7 @@ Public Sub cbxDBTyp_Click()
     "Die wichtigsten Eigenschaften von MySQL sind Geschwindigkeit, Stabilität und Sicherheit mit der sich extrem große Datenmengen bewältigen lassen." & Chr(10) & Chr(10) &
     "Das Programm prüft beim starten ob der MySQL-Server installiert ist. Wenn nicht muss dieser noch installiert werden." & Chr(10) & Chr(10) &
     "Einfach per Terminal (Konsole) installieren, Befehl:" & Chr(10) &
-    "sudo apt-get install mysql-server emma" & Chr(10) & Chr(10) & Chr(10) & Chr(10) &
-    "-------------------------------" & Chr(10) &
-    "Tipp: Beim ersten Start empfehle ich eine 'test' Datenbank zu erstellen um das Programm zu testen."
+    "sudo apt install mysql-server emma"
 
 
 

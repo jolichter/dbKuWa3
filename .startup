@@ -2,7 +2,7 @@ frmAnmelden
 dbKuWa3
 0
 0
-17.11.41
+19.3.43
 
 gb.image
 gb.qt4
@@ -11,6 +11,5 @@ gb.db
 gb.db.form
 gb.db.mysql
 gb.settings
-gb.pdf
 gb.qt4.ext
 

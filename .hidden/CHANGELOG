@@ -1,3 +1,9 @@
+* Sat Mar 16 2019 Jo Lichter <jlichter@web.de> 19.3.43
+- bug: Qt 5.12.0 -> Windows kann PDF nicht lesen (Error 14, Seitenformat 0 x 0), darum zurück zu Qt 4.8.7
+
+* Fri Dec 21 2018 Jo Lichter <jlichter@web.de> 18.12.42
+- update: Qt5
+
 * Wed Nov 08 2017 Jo Lichter <jlichter@web.de> 17.11.41
 - bug: noch 2 falsche Datumsformate gefixt
 

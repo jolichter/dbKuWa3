@@ -4729,7 +4729,7 @@ End
 
 
 Public Sub Info_Click()
-  Message.Info("dbKuWa3 ist ein freies Rechnungs- Kunden & Warenverwaltungsprogramm" & Chr(10) & "für Linux Debian und entwickelt mit Gambas3/Qt4" & Chr(10) & "Version: " & Application.Version & Chr(10) & "www.jolichter.de" & Chr(10) & Chr(10) &
+  Message.Info("dbKuWa3 ist ein freies Rechnungs- Kunden & Warenverwaltungsprogramm" & Chr(10) & "für Linux Debian und entwickelt mit Gambas3/Qt5" & Chr(10) & "Version: " & Application.Version & Chr(10) & "www.jolichter.de" & Chr(10) & Chr(10) &
   "Die Benutzung des Programms geschieht auf eigene Gefahr." & Chr(10) & "Für Schäden, die durch den Gebrauch des Programms auftreten, haftet der Programmautor nicht!")
 End
 
@@ -4925,9 +4925,9 @@ Dim strEmailBetreff, strEMailText As String   'eMail Text
    'wenn GNOME evolution
     Try Shell "evolution mailto:'" & txtEMailKundeRechnung.Text & "'" & "?cc=''" & Chr$(92) & "&subject='" & strEmailBetreff & "'" & Chr$(92) & "&body='" & strEMailText & "'" & Chr$(92) & "&attach='" & strPdfout & "'"
     '
-   'wenn KDE kmail
+   'wenn KDE kmail (habs deaktiviert 2018-12-21 !)
     'Terminal Syntax: kmail mailto: "test@web.de"  --subject="test kmail" --body="huhu ein kmail test" --attach="/home/test/dbKuWa3/pdf/Rechnung_1-1610-4711_test.pdf"
-    Try Shell ("kmail mailto:'" & txtEMailKundeRechnung.Text & "'" & " --subject='" & strEmailBetreff & "' --body='" & strEMailText & "' --attach='" & strPdfout & "'")
+    'Try Shell ("kmail mailto:'" & txtEMailKundeRechnung.Text & "'" & " --subject='" & strEmailBetreff & "' --body='" & strEMailText & "' --attach='" & strPdfout & "'")
 
   Endif 'eMail
 
@@ -4952,7 +4952,7 @@ Dim strEmailBetreff, strEMailText As String   'eMail Text
     .FullPage = True
     .FirstPage = 0
     .LastPage = 0 'all pages will be printed
-    .Orientation = myPrinter.Portrait 'Hochformat
+    .Orientation = myPrinter.Portrait 'Portrait = Hochformat | Landscape = Querformat
     .Paper = myPrinter.A4
     .Resolution = 600
     .NumCopies = 1
@@ -4963,7 +4963,6 @@ Dim strEmailBetreff, strEMailText As String   'eMail Text
          Message.Info("PDF erfolgreich erstellt:" & Chr(10) & strPdfout)
        Endif
   Endif
-
 End
 
 
@@ -5013,7 +5012,7 @@ Dim intPos, intRow As Integer                                     'Anzahl der Re
 Dim intFix As Integer = 20                                        'BUG? nur wenn Paint.Text mit "Align.Right" dann muss ich 20 Pixel wieder hoch!
 
 
-intLogoXmax = 500    'max. Pixel Logohöhe
+intLogoXmax = 500
 
 'Position Logo
 intXLogo = 22 * intPixelmm
@@ -5042,7 +5041,6 @@ intXZuRechts = 22 * intPixelmm
 intXURechts = 22 * intPixelmm
 intYURechts = 270 * intPixelmm
 intBURechts = 50 * intPixelmm
-
 
 
   'SQL Abfragen
@@ -5395,8 +5393,6 @@ If myPrinter.Count = 1
       .Rectangle(intXZuRechts + 125 * intPixelmm, intYZuRechts + intZeiUmbr - 70, 58 * intPixelmm, 1)
       .Stroke
     End With
-
-
 
   intYZuRechts = intYZuRechts + 2 * intZeiUmbr
 

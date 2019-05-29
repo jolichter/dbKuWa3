@@ -1,9 +1,8 @@
 # Gambas Project File 3.0
-# Compiled with Gambas 3.10.0
 Title=dbKuWa3
 Startup=frmAnmelden
 Icon=icons/48x48/alacarte.png
-Version=17.11.41
+Version=19.3.43
 Component=gb.image
 Component=gb.qt4
 Component=gb.form
@@ -11,10 +10,9 @@ Component=gb.db
 Component=gb.db.form
 Component=gb.db.mysql
 Component=gb.settings
-Component=gb.pdf
 Component=gb.qt4.ext
 Description="dbKuWa3 ist ein Freeware Rechnungsprogramm für Linux Debian und wurde mit Gambas3/Qt4 entwickelt. Die Daten werden in einer mySQL-Datenbank abgelegt. Made by JoLichter.de"
-Authors="www.lichter-it.de"
+Authors="lichter-it.de"
 TabSize=2
 Translate=1
 Language=de
@@ -23,9 +21,9 @@ ModulePublic=1
 Maintainer=Jo Lichter
 Vendor=lichter-it
 Address=jlichter@web.de
-Url=http://www.lichter-it.de
+Url=https://lichter-it.de
 License=Freeware
-PackageName=dbkuwa3-17.11.41
+PackageName=dbkuwa3-19.3.43
 Packager=1
 Systems=autotools,debian
 Menus=debian:"Applications/Office"

@@ -9,7 +9,7 @@
     MoveScaled(1,1,33,77)
     Text = ("DB-Verbindung dbKuWa3")
     { lblDB_Typ TextLabel
-      MoveScaled(2,3,25,4)
+      MoveScaled(2,3,25,2.5714)
       Text = ("Typ")
       Alignment = Align.Left
     }
@@ -82,33 +82,33 @@
       Border = True
     }
     { lblHostInfo Label
-      MoveScaled(2,19,28,3)
+      MoveScaled(2,20,28,2.5714)
       Font = Font["-2"]
       Text = ("lblHostInfo")
     }
     { lblDatenbankInfo Label
-      MoveScaled(2,28,29,3)
+      MoveScaled(2,29,29,2.5714)
       Font = Font["-2"]
       Text = ("lblDatenbankInfo")
     }
     { lblDBUserInfo Label
-      MoveScaled(2,38,29,3)
+      MoveScaled(2,39,29,2.5714)
       Font = Font["-2"]
       Text = ("lblDBUserInfo")
     }
     { lblPasswortInfo Label
-      MoveScaled(2,48,29,3)
+      MoveScaled(2,49,29,2.5714)
       Font = Font["-2"]
       Text = ("lblPasswortInfo")
     }
     { lblSQL_Version Label
-      MoveScaled(2,10,28,3)
+      MoveScaled(2,10,28,2.5714)
       Font = Font["-2"]
       Text = ("SQL?")
     }
   }
   { fraInfo Frame
-    MoveScaled(34,1,36,76)
+    MoveScaled(34,1,36,77)
     Text = ("Info")
     { txtInfo TextArea
       MoveScaled(1,4,34,72)

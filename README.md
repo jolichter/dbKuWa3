@@ -1,5 +1,5 @@
 # dbKuWa3
-### dbKuWa3 ist ein Rechnungs- Kunden & Warenverwaltungsprogramm mit einer Qt4 GUI für LINUX in Gambas3 entwickelt
+### dbKuWa3 ist ein Rechnungs- Kunden & Warenverwaltungsprogramm mit einer Qt5 GUI für LINUX in Gambas3 entwickelt
 - ideal für kleine Firmen die pro Rechnung max. 20 Positionen schreiben
 - Daten werden in einer sicheren und schnellen MySQL-Datenbank gespeichert (utf-8)
 - mehrere Firmen und deren Kunden anlegen
@@ -10,8 +10,8 @@
 - Laufzeitrechnungen möglich (z.B. Wartungsverträge)
 - ermäßigte und volle MwSt wird auf Rechnung korrekt ausgewiesen
 - fortlaufende Rechnungsnummer. Format: [FirmaNr]-[JahrMonat]-[fortlfd-Nr]
-- Drucken von Angebot und Rechnung, auch als PDF-Datei oder direkt per E-Mail senden (Evolution oder KMail)
+- Drucken von Angebot und Rechnung, auch als PDF-Datei oder direkt per E-Mail senden (Evolution)
 - Datenbank Backup, Wiederherstellung und reparieren
 - ein neues Release wird einfach über das vorhandene installiert
 - benötigt gambas3-runtime
-- Info & Download als Debian-Paket: [jolichter.de -> dbkuwa3] (http://www.jolichter.de/programme/dbkuwa3.html)
+- Info & Download als Debian-Paket: [jolichter.de -> dbkuwa3] (https://jolichter.de/programme/)

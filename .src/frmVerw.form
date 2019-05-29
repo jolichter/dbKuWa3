@@ -29,7 +29,7 @@
       Picture = Picture["icons/16x16/kexi.png"]
     }
     { mnuDBBackup Menu
-      Text = Shortcut(("Datenbank Backup"), "B")
+      Text = Shortcut(("Datenbank Backup"), "b")
     }
     { mnuDBRestore Menu
       Text = Shortcut(("Datenbank Wiederherstellen"), "W")
@@ -100,20 +100,10 @@
         ToolTip = ("wird automatisch generiert")
         ReadOnly = True
       }
-      { txtFirma TextBox
-        MoveScaled(13,45,37,4)
-        Font = Font["10"]
-        MaxLength = 64
-      }
       { txtFirmaAdresse TextBox
         MoveScaled(53,45,61,4)
         Font = Font["10"]
         MaxLength = 128
-      }
-      { ediFirmaKontakt Editor
-        MoveScaled(1,54,49,13)
-        Font = Font["Andale Mono,-1"]
-        ToolTip = ("Erscheint in der Rechnung\nunten links")
       }
       { lblFirmaKontakt TextLabel
         MoveScaled(2,51,41,3)
@@ -171,36 +161,45 @@
         MoveScaled(2,85,27,3)
         Text = ("Bemerkung / Firmendetails")
       }
-      { ediFirmaBemerkung Editor
-        MoveScaled(1,88,59,17)
-        Font = Font["Andale Mono,-1"]
-        ToolTip = ("Erscheint in der Rechnung\noben links (unter dem Logo)\nJe nach Grösse des Logos sind\n1 bis 3 Zeilen möglich")
-        ScrollBar = Scroll.None
-      }
       { txtFirmaUSt_IdNr TextLabel
         MoveScaled(62,70,51,3)
         Text = ("Steuernr, USt-IdNr, Zuständige Aufsichtsbehörde")
-      }
-      { ediFirmaUSt_IdNr Editor
-        MoveScaled(61,73,59,11)
-        Font = Font["Andale Mono,-1"]
-        ToolTip = ("Erscheint in der Rechnung\nunten mitte")
-        ScrollBar = Scroll.None
       }
       { txtFirmaBankverbindung TextLabel
         MoveScaled(62,85,19,3)
         Text = ("Bankverbindung")
       }
-      { ediFirmaBankverbindung Editor
+      { lblStrich TextLabel
+        MoveScaled(50,45,3,4)
+        Text = ("-")
+        Alignment = Align.Center
+      }
+      { ediFirmaBemerkung TextEdit
+        MoveScaled(1,88,59,17)
+        Font = Font["Andale Mono,-1"]
+        ToolTip = ("Erscheint in der Rechnung\noben links (unter dem Logo)\nJe nach Grösse des Logos sind\n1 bis 3 Zeilen möglich")
+        ScrollBar = Scroll.None
+      }
+      { ediFirmaBankverbindung TextEdit
         MoveScaled(61,88,59,17)
         Font = Font["Andale Mono,-1"]
         ToolTip = ("Erscheint in der Rechnung\nunten rechts")
         ScrollBar = Scroll.None
       }
-      { lblStrich TextLabel
-        MoveScaled(50,45,3,4)
-        Text = ("-")
-        Alignment = Align.Center
+      { ediFirmaKontakt TextEdit
+        MoveScaled(1,54,49,13)
+        Font = Font["Andale Mono,-1"]
+        ToolTip = ("Erscheint in der Rechnung\nunten links")
+      }
+      { txtFirma TextBox
+        MoveScaled(13,45,37,4)
+        Font = Font["10"]
+      }
+      { ediFirmaUSt_IdNr TextEdit
+        MoveScaled(61,73,59,11)
+        Font = Font["Andale Mono,-1"]
+        ToolTip = ("Erscheint in der Rechnung\nunten mitte")
+        ScrollBar = Scroll.None
       }
       Index = 1
       Text = ("Kunden")
@@ -354,11 +353,6 @@
         MoveScaled(16,66,18,4)
         Text = ("Kunde ist aktiv")
       }
-      { txtKundeBemerkung Editor
-        MoveScaled(1,87,51,20)
-        ToolTip = ("interne Bemerkung")
-        ScrollBar = Scroll.None
-      }
       { lblKundeNr TextLabel
         MoveScaled(1,50,12,3)
         Font = Font["10"]
@@ -375,10 +369,6 @@
         Text = ("ID")
         Transparent = True
       }
-      { txtKundeBank Editor
-        MoveScaled(54,87,48,20)
-        ScrollBar = Scroll.None
-      }
       { lblKundeBank TextLabel
         MoveScaled(55,84,12,3)
         Text = ("Bank")
@@ -388,6 +378,15 @@
         Font = Font["Italic,+1"]
         ToolTip = ("Liste filtern nach Kd-Nr")
         MaxLength = 20
+      }
+      { txtKundeBemerkung TextEdit
+        MoveScaled(1,87,51,20)
+        ToolTip = ("interne Bemerkung")
+        ScrollBar = Scroll.None
+      }
+      { txtKundeBank TextEdit
+        MoveScaled(54,87,48,20)
+        ScrollBar = Scroll.None
       }
       Index = 0
     }
@@ -474,11 +473,6 @@
         MoveScaled(2,86,12,3)
         Text = ("Bemerkung")
       }
-      { ediWnLieferantBemerkung Editor
-        MoveScaled(1,89,112,20)
-        ToolTip = ("interne Bemerkung")
-        ScrollBar = Scroll.None
-      }
       { lblWnLieferantNr TextLabel
         MoveScaled(2,70,9,3)
         Font = Font["10"]
@@ -499,6 +493,11 @@
         ToolTip = ("sortieren nach")
         ReadOnly = True
         List = [("Nr"), ("Lieferant"), ("Zusatz")]
+      }
+      { ediWnLieferantBemerkung TextEdit
+        MoveScaled(1,89,112,20)
+        ToolTip = ("interne Bemerkung")
+        ScrollBar = Scroll.None
       }
       Index = 1
       Text = ("Waren")
@@ -593,7 +592,7 @@
         }
       }
       { fraWnNettopreis Frame
-        MoveScaled(100,60,28,11)
+        MoveScaled(100,60,28,12)
         Text = ("Nettopreis €")
         { lblWnEKnetto TextLabel
           MoveScaled(2,4,9,4)
@@ -624,7 +623,7 @@
         MaxLength = 4
       }
       { fraWnBruttopreis Frame
-        MoveScaled(100,81,28,11)
+        MoveScaled(100,81,28,12)
         Text = ("Bruttopreis €")
         { lblWnPreisEKBrutto TextLabel
           MoveScaled(3,4,9,3)
@@ -680,11 +679,6 @@
         MoveScaled(109,72,11,3)
         Text = ("MwSt Code")
       }
-      { ediWnWarBemerkung Editor
-        MoveScaled(1,93,128,16)
-        ToolTip = ("interne Bemerkung")
-        ScrollBar = Scroll.None
-      }
       { grvWaren GridView
         MoveScaled(0,1,131,47)
         Expand = True
@@ -696,7 +690,7 @@
         Text = ("Filter")
       }
       { chkWnNichtLagerArtikel CheckBox
-        MoveScaled(22,74,26,4)
+        MoveScaled(24,74,26,3)
         ToolTip = ("Artikel nicht lagerfähig\nz.B.: Serviceleistungen, Internet-Software usw.\n(ns = non-stockable item)")
         Text = ("Nicht-Lager-Artikel (ns)")
       }
@@ -743,6 +737,11 @@
         ToolTip = ("sortieren nach")
         ReadOnly = True
         List = [("Nr"), ("Lieferant"), ("Bereich"), ("Kategorie"), ("Beschreibung"), ("Bestand")]
+      }
+      { ediWnWarBemerkung TextEdit
+        MoveScaled(1,93,127,16)
+        ToolTip = ("interne Bemerkung")
+        ScrollBar = Scroll.None
       }
       Index = 2
       Text = ("Ansprechpartner")
@@ -853,11 +852,6 @@
         MoveScaled(2,90,12,3)
         Text = ("Bemerkung")
       }
-      { ediWnAPBemerkung Editor
-        MoveScaled(1,93,112,15)
-        ToolTip = ("interne Bemerkung")
-        ScrollBar = Scroll.None
-      }
       { grvAPLieferant GridView
         MoveScaled(0,1,131,54)
         Expand = True
@@ -884,6 +878,11 @@
         ToolTip = ("sortieren nach")
         ReadOnly = True
         List = [("Nr"), ("Lieferant"), ("Name"), ("Vorname")]
+      }
+      { ediWnAPBemerkung TextEdit
+        MoveScaled(1,93,112,15)
+        ToolTip = ("interne Bemerkung")
+        ScrollBar = Scroll.None
       }
       Index = 0
     }
@@ -1591,11 +1590,6 @@
         Text = ("Textende /\nBemerkung")
         Alignment = Align.TopLeft
       }
-      { ediBemerkungRechnung Editor
-        MoveScaled(2,43,119,22)
-        ToolTip = ("Erscheint unten in der Rechnung")
-        ScrollBar = Scroll.None
-      }
       { lblRabattRechnung TextLabel
         MoveScaled(103,13,10,4)
         Text = ("Rabatt %")
@@ -1642,19 +1636,24 @@
       }
       { btnNextBill Button
         MoveScaled(121,4,9,4)
-        ToolTip = ("Nächste Laufzeitrechnung\nerstellen....")
+        ToolTip = ("Nächste Laufzeitrechnung\nerstellen.") & "..."
         Text = ("NextBill")
-      }
-      { ediBemerkungIntRechnung Editor
-        MoveScaled(2,65,119,7)
-        Font = Font["Courier New"]
-        ToolTip = ("nur Intern!")
-        ScrollBar = Scroll.None
       }
       { lblBemerkungRechnungIntern TextLabel
         MoveScaled(123,66,22,3)
         Text = ("interne Bemerkung")
         Alignment = Align.TopLeft
+      }
+      { ediBemerkungRechnung TextEdit
+        MoveScaled(2,43,119,22)
+        ToolTip = ("Erscheint unten in der Rechnung")
+        ScrollBar = Scroll.None
+      }
+      { ediBemerkungIntRechnung TextEdit
+        MoveScaled(2,65,119,7)
+        Font = Font["Courier New"]
+        ToolTip = ("nur Intern!")
+        ScrollBar = Scroll.None
       }
       Index = 0
     }
@@ -1831,22 +1830,22 @@
         MoveScaled(4,6,36,4)
         Text = ("Text unter der Anrede, wenn Rechnung")
       }
-      { ediTextEinleitung1 Editor
+      { ediTextEinleitung1 TextEdit
         MoveScaled(42,6,88,16.7143)
         ToolTip = ("max. 4 Zeilen")
         ScrollBar = Scroll.None
       }
-      { ediTextEinleitung2 Editor
+      { ediTextEinleitung2 TextEdit
         MoveScaled(42,24,88,16.7143)
         ToolTip = ("max. 4 Zeilen")
         ScrollBar = Scroll.None
       }
-      { ediTextMahnung Editor
+      { ediTextMahnung TextEdit
         MoveScaled(4,50,126,18)
         ToolTip = ("max. 4 Zeilen")
         ScrollBar = Scroll.None
       }
-      { ediBemerkungRechnung2 Editor
+      { ediBemerkungRechnung2 TextEdit
         MoveScaled(4,75,126,23.2857)
         ToolTip = ("max. 4 Zeilen")
         ScrollBar = Scroll.None
