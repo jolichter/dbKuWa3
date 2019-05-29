@@ -14,4 +14,4 @@
 - Datenbank Backup, Wiederherstellung und reparieren
 - ein neues Release wird einfach über das vorhandene installiert
 - benötigt gambas3-runtime
-- Info & Download als Debian-Paket: [jolichter.de -> dbkuwa3] (https://jolichter.de/programme/)
+- Info & Download als Debian-Paket: [jolichter.de -> Tools -> dbkuwa3] (https://jolichter.de/programme/)
